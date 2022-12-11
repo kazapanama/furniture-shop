@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  margin:0;
+  padding:0;
+}
+
+.App{
+  max-width: min(99vw, 1200px);
+  margin: 0 auto;
+}
