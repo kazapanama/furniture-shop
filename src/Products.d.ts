@@ -4,7 +4,7 @@ interface Product {
     price: number;
     description?: string;
     category: string;
-    images?: string[];
+    images: string[];
 }
 
 interface Sofa extends Product {

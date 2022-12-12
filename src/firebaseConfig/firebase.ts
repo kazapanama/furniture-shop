@@ -1,8 +1,8 @@
-
-import { FirebaseApp, initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc} from 'firebase/firestore' 
+import { getAuth, signInWithEmailAndPassword  } from "firebase/auth";
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { AllProducts } from "../Products";
-
 
 
 const firebaseConfig = {
@@ -37,3 +37,55 @@ export const products = await getProducts();
 export async function addNewProduct(product:AllProducts){
   await setDoc(doc(db, "products",product.id), product);
 }
+
+//
+export const uploadFile = async (image: File,setImgURLs:any,id:string) => {
+  const storage = getStorage();
+
+  const storageRef = ref(storage, `products/${id}/${image.name}`);
+
+  const uploadTask = uploadBytesResumable(storageRef, image as File);
+
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {
+      switch (snapshot.state) {
+        case "paused":
+          break;
+        case "running":
+          break;
+        default:
+          break;
+      }
+    },
+    (error) => {
+      // Handle unsuccessful uploads
+    },
+    async () => {
+      await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        setImgURLs((prevState:string[]) => [...prevState, downloadURL]);
+      });
+    }
+  );
+};
+
+
+export const signInAdmin = async (credentials:{email:string,password:string}) => {
+const {email,password} = credentials;
+  const auth = getAuth();
+ 
+const user = await signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    return user
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
+  return user;
+}
+

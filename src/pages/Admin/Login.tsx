@@ -1,5 +1,7 @@
+import LoginAdmin from "../../components/LoginAdmin/LoginAdmin";
+
 const  Login = () => {
-    return ( <h1>Login</h1> );
+    return ( <LoginAdmin /> );
 }
  
 export default Login ;

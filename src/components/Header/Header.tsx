@@ -37,6 +37,11 @@ const OpenedMenu:FC<OpenedMenuProps> = ({isOpen,setIsOpen}) => {
       
       <Link to='/admin/add'
       onClick={()=>setIsOpen(false)}>Додати новий товар</Link>
+
+      <Link to='/admin/'
+      onClick={()=>setIsOpen(false)}>Адмінка</Link>
+
+
     </div>
     
   )

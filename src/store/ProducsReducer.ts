@@ -11,19 +11,19 @@ const ProductsSlice = createSlice({
       state = [...action.payload.sort((a,b)=> (+b.id) - +a.id)];
       return state;
     },
-    // addOne: (state, action) => {
-    //   const flat = state.find((item) => item.id === action.payload.id);
+    addOne: (state, action:{type:string,payload:AllProducts}) => {
+      const product = state.find((item) => item.id === action.payload.id);
 
-    //   if (flat) {
-    //     state = [
-    //       action.payload,
-    //       ...state.filter((item) => item.id !== flat.id),
-    //     ];
-    //   } else {
-    //     state.unshift(action.payload);
-    //   }
-    //   return state;
-    // },
+      if (product) {
+        state = [
+          action.payload,
+          ...state.filter((item) => item.id !== product.id),
+        ];
+      } else {
+        state.unshift(action.payload);
+      }
+      return state;
+    },
     // deleteOne: (state, action) => {
     //   state = state.filter((item) => item.id !== action.payload);
     //   return state;
@@ -31,6 +31,6 @@ const ProductsSlice = createSlice({
   },
 });
 
-export const { addAll,} = ProductsSlice.actions;
+export const { addAll,addOne} = ProductsSlice.actions;
 
 export default ProductsSlice.reducer;

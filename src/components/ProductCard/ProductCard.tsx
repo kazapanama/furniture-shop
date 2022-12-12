@@ -9,10 +9,10 @@ interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = ({ item }) => {
   return (
     
-      <div className=" mb-2 p-2 shadow-xl">
-        {item.images && item.images.length > 0 ? 'kek' : <Link to={'/products/' + item.id}><img src="./placeholder.png" className="" /></Link>}
+      <div className=" mb-2 p-2 shadow-sm w-full md:w-72 md:h-80 flex flex-col items-center border">
+        <ProductCartImage images={item.images}/>
 
-        <div className='flex justify-between items-end'>
+        <div className='flex justify-between items-end w-full mb-2'>
           <div className="flex flex-col">
             <span className="font-bold text-xl">{item.name}</span>
             <span>{item.price} грн</span>
@@ -26,3 +26,16 @@ const ProductCard: FC<ProductCardProps> = ({ item }) => {
 };
 
 export default ProductCard;
+
+interface ProductCartImageProps {
+  images: string[];
+}
+
+
+const ProductCartImage:FC<ProductCartImageProps> = ({images}) => {
+  if (images && images.length > 0) {
+    return <img src={images[0]} className="w-full h-5/6 cover" />
+  } else{
+    return <img src="./placeholder.png" className="w-full h-5/6 cover" />
+  }
+}
