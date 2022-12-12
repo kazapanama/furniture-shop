@@ -3,7 +3,7 @@ interface Product {
     name: string;
     price: number;
     description?: string;
-    category: 'sofa' | 'chair' | 'bed' | 'closet';
+    category: string;
     images?: string[];
 }
 

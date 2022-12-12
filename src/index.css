@@ -12,3 +12,17 @@
   max-width: min(100vw, 1250px);
   margin: 0 auto;
 }
+
+/* temporary for styling */
+
+input{
+  border:1px solid black;
+}
+
+textarea{
+  border:1px solid black;
+}
+
+select{
+  border:1px solid blue;
+}

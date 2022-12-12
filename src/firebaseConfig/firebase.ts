@@ -34,6 +34,6 @@ async function getProducts():Promise<AllProducts[]> {
 export const products = await getProducts();
 
 //adds dummy data to the database
-export async function addNewFlat(){
-  await setDoc(doc(db, "products",String(Date.now())), {name:'jej'});
+export async function addNewProduct(product:AllProducts){
+  await setDoc(doc(db, "products",product.id), product);
 }

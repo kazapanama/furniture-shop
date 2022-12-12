@@ -13,7 +13,6 @@ const Home = () => {
     return ( 
     <div className="">
 
-        <h1>Home</h1> 
         <CategorySection title="Дивани" items={sofas}/>
         <CategorySection title="Крісла" items={chairs}/>
         <CategorySection title="Шафи" items={closets}/>

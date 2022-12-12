@@ -10,7 +10,7 @@ const ProductCard: FC<ProductCardProps> = ({ item }) => {
   return (
     
       <div className=" mb-2 p-2 shadow-xl">
-        {item.images ? 'kek' : <Link to={'/products/' + item.id}><img src="./placeholder.png" className="" /></Link>}
+        {item.images && item.images.length > 0 ? 'kek' : <Link to={'/products/' + item.id}><img src="./placeholder.png" className="" /></Link>}
 
         <div className='flex justify-between items-end'>
           <div className="flex flex-col">

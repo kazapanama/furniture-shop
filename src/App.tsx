@@ -1,15 +1,16 @@
-import { products, addNewFlat } from './firebaseConfig/firebase';
+import { products,} from './firebaseConfig/firebase';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import AllProducts from './pages/Products/AllProducts';
 import Details from './pages/Products/Details';
 import Login from './pages/Admin/Login';
 import Pannel from './pages/Admin/Pannel';
-import Edit from './pages/Admin/Edit';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import { useAppDispatch } from './hooks/useStore';
 import { addAll } from './store/ProducsReducer';
+import EditProduct from './pages/Admin/EditProduct';
+import AddProduct from './pages/Admin/AddProduct';
 
 function App() {
  
@@ -26,7 +27,8 @@ function App() {
         <Route path="/products/:id" element={<Details />} />
         <Route path="/admin" element={<Login />} />
         <Route path="/admin/panel" element={<Pannel />} />
-        <Route path="/admin/edit" element={<Edit />} />
+        <Route path="/admin/edit" element={<EditProduct />} />
+        <Route path="/admin/add" element={<AddProduct />} />
       </Routes>
       <Footer />
     </div>
