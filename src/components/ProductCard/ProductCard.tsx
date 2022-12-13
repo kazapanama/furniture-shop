@@ -9,8 +9,8 @@ interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = ({ item }) => {
   return (
     
-      <div className=" mb-2 p-2 shadow-sm w-full md:w-72 md:h-80 flex flex-col items-center border">
-        <ProductCartImage images={item.images}/>
+      <div className=" mb-2 p-2 shadow-sm w-full md:w-72 md:aspect-square flex flex-col items-center border">
+        <Link to={'/products/'+item.id}>  <ProductCartImage images={item.images} /></Link>
 
         <div className='flex justify-between items-end w-full mb-2'>
           <div className="flex flex-col">
@@ -34,8 +34,8 @@ interface ProductCartImageProps {
 
 const ProductCartImage:FC<ProductCartImageProps> = ({images}) => {
   if (images && images.length > 0) {
-    return <img src={images[0]} className="w-full h-5/6 cover" />
+    return <img src={images[0]} className="w-full aspect-square object-cover" /> 
   } else{
-    return <img src="./placeholder.png" className="w-full h-5/6 cover" />
+    return <img src="./placeholder.png" className="w-full aspect-square object-cover" /> 
   }
 }

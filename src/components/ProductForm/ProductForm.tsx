@@ -23,16 +23,22 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     const [product, setProduct] = useState(toEdit||item)
     const [images, setImages] = useState<File[] | []>([]);
     const [imgURLs, setImgURLs] = useState<string[]>(item?.images ? item.images : []);
+    const [test,setTest] = useState<any>('')
+
     const dispatch = useAppDispatch();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const readyForUpload = {...product, images:imgURLs}
        
+        //upload to firebase
         addNewProduct(readyForUpload)
+        //reset form
         setProduct(item)
+        //add to redux store
         dispatch(addOne(readyForUpload))
         alert('Товар додано')
+        //reset images 
         setImgURLs([])
     
     }
@@ -97,6 +103,13 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     
             <button type='submit'>ADD</button>
     
+        <input type="file" onChange={(e:any)=>{
+                setTest(URL.createObjectURL(e.target.files[0]))
+                console.log(test)
+        }}/>
+        {test && <img src={test}></img>}
+
+
             </form>
         </section> 
      );

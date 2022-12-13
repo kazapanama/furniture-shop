@@ -1,4 +1,4 @@
-import { products,} from './firebaseConfig/firebase';
+import { products } from './firebaseConfig/firebase';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import AllProducts from './pages/Products/AllProducts';
@@ -11,12 +11,11 @@ import { useAppDispatch } from './hooks/useStore';
 import { addAll } from './store/ProducsReducer';
 import EditProduct from './pages/Admin/EditProduct';
 import AddProduct from './pages/Admin/AddProduct';
+import ProtectedRoutes from './helpers/ProtectedRoutes';
 
 function App() {
- 
- const dispatch = useAppDispatch();
- dispatch(addAll(products));
-  
+  const dispatch = useAppDispatch();
+  dispatch(addAll(products));
 
   return (
     <div className="App">
@@ -26,9 +25,11 @@ function App() {
         <Route path="/products" element={<AllProducts />} />
         <Route path="/products/:id" element={<Details />} />
         <Route path="/admin" element={<Login />} />
-        <Route path="/admin/panel" element={<Pannel />} />
-        <Route path="/admin/edit" element={<EditProduct />} />
-        <Route path="/admin/add" element={<AddProduct />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/admin/panel" element={<Pannel />} />
+          <Route path="/admin/edit" element={<EditProduct />} />
+          <Route path="/admin/add" element={<AddProduct />} />
+        </Route>
       </Routes>
       <Footer />
     </div>

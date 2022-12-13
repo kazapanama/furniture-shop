@@ -1,34 +1,56 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {signInAdmin} from '../../firebaseConfig/firebase'
+import { useAppDispatch } from '../../hooks/useStore';
+import { loginUser } from '../../store/UserReducer';
 
 const LoginAdmin = () => {
     
     
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('furniture860@gmail.com');
     const [password, setPassword] = useState('')
-    
+    const [error, setError] = useState(false)
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
     const handleLogin = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
        const admin = await signInAdmin({email, password});
-       console.log(admin?.email)
+       
+       if (admin){
+        console.log(admin?.email)
+        dispatch(loginUser(admin.email))
+        navigate('/admin/panel')
+       } else {
+              setError(true)
+       }
+       
+       
+       
     }
     
     
-    
     return ( 
-        <section>
-            <form onSubmit={(e)=>handleLogin(e)}>
-                <div>
-                    <label >login</label>
-                    <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+        <section className='flex flex-col items-center'>
+            <form onSubmit={(e)=>handleLogin(e)} className='w-4/6'>
+                <div className='flex flex-col'>
+                    <label >Email:</label>
+                    <input type="text" value={email} onChange={(e)=>{
+                    setEmail(e.target.value)
+                    error ? setError(false) : null                        
+                    }}/>
                 </div>
 
-                <div>
-                    <label >password</label>
-                    <input type="text" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <div className='flex flex-col'>
+                    <label >Пароль</label>
+                    <input type="password" value={password} onChange={(e)=>{
+                    setPassword(e.target.value)
+                    error ? setError(false) : null
+                    }}/>
                 </div>
                 <button type='submit'>LOGIN</button>
             </form>
+            {error && <span className='text-red-800'>error</span>}
         </section>
      );
 }
