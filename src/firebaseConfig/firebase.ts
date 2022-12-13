@@ -18,7 +18,6 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
 
-
 const db = getFirestore(app);
 const productsRef = collection(db, 'products');
 
@@ -38,11 +37,14 @@ export async function addNewProduct(product:AllProducts){
   await setDoc(doc(db, "products",product.id), product);
 }
 
-//
-export const uploadFile = async (image: File,setImgURLs:any,id:string) => {
+export   const storage = getStorage();
+
+
+//uploads image to the storage
+export const uploadFile = async (image: File,setImgURLs:any,id:string,productName:string,productCategory:string) => {
   const storage = getStorage();
 
-  const storageRef = ref(storage, `products/${id}/${image.name}`);
+  const storageRef = ref(storage, `products/${productCategory}/${productName}/${image.name}`);
 
   const uploadTask = uploadBytesResumable(storageRef, image as File);
 
@@ -69,7 +71,7 @@ export const uploadFile = async (image: File,setImgURLs:any,id:string) => {
   );
 };
 
-
+//login admin
 export const signInAdmin = async (credentials:{email:string,password:string}) => {
 const {email,password} = credentials;
   const auth = getAuth();
@@ -88,4 +90,5 @@ const user = await signInWithEmailAndPassword(auth, email, password)
 
   return user;
 }
+
 

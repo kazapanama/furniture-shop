@@ -23,7 +23,6 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     const [product, setProduct] = useState(toEdit||item)
     const [images, setImages] = useState<File[] | []>([]);
     const [imgURLs, setImgURLs] = useState<string[]>(item?.images ? item.images : []);
-    const [test,setTest] = useState<any>('')
 
     const dispatch = useAppDispatch();
 
@@ -48,7 +47,7 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     
         if (images) {
           images.forEach(async (image) => {
-            await uploadFile(image,setImgURLs,item.id);
+            await uploadFile(image,setImgURLs,product.id,product.name,product.category);
           });
         }
       }, [images]);
@@ -98,17 +97,11 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     
           />
     
-        {imgURLs.map(image=><img  src={image} className='w-20 h-20 cover'/>)}     
+        {imgURLs.map(image=><img  src={image} key={image} className='w-20 h-20 cover'/>)}     
         </div>
     
             <button type='submit'>ADD</button>
     
-        <input type="file" onChange={(e:any)=>{
-                setTest(URL.createObjectURL(e.target.files[0]))
-                console.log(test)
-        }}/>
-        {test && <img src={test}></img>}
-
 
             </form>
         </section> 
