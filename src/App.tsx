@@ -1,4 +1,4 @@
-import { products } from './firebaseConfig/firebase';
+import { getProducts } from './firebaseConfig/firebase';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import AllProducts from './pages/Products/AllProducts';
@@ -12,10 +12,24 @@ import { addAll } from './store/ProducsReducer';
 import EditProduct from './pages/Admin/EditProduct';
 import AddProduct from './pages/Admin/AddProduct';
 import ProtectedRoutes from './helpers/ProtectedRoutes';
+import { useEffect } from 'react';
 
 function App() {
+
   const dispatch = useAppDispatch();
-  dispatch(addAll(products));
+
+  useEffect(()=>{
+    const setupData = async () => {
+      const products = await getProducts();
+   
+      dispatch(addAll(products));
+    }
+    setupData();
+
+  },[])
+
+
+
 
   return (
     <div className="App">

@@ -21,16 +21,13 @@ export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const productsRef = collection(db, 'products');
 
-async function getProducts():Promise<AllProducts[]> {
+export async function getProducts():Promise<AllProducts[]> {
     const productsSnapshot = await getDocs(productsRef);
     const List = productsSnapshot.docs.map(doc => doc.data());
     return List as AllProducts[];
   }
 
 
-
-//gets all products from the database
-export const products = await getProducts();
 
 //adds dummy data to the database
 export async function addNewProduct(product:AllProducts){
