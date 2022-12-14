@@ -38,10 +38,10 @@ export   const storage = getStorage();
 
 
 //uploads image to the storage
-export const uploadFile = async (image: File,setImgURLs:any,id:string,productName:string,productCategory:string) => {
+export const uploadFile = async (image: File,setImgURLs:any,id:string,productCategory:string) => {
   const storage = getStorage();
 
-  const storageRef = ref(storage, `products/${productCategory}/${productName}/${image.name}`);
+  const storageRef = ref(storage, `products/${productCategory}/${id}/${image.name}`);
 
   const uploadTask = uploadBytesResumable(storageRef, image as File);
 

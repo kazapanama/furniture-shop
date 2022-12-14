@@ -9,7 +9,7 @@ const ProductsSlice = createSlice({
   reducers: {
     addAll: (state, action:{type:string,payload:AllProducts[]}) => {
       state = [...action.payload.sort((a,b)=> (+b.id) - +a.id)];
-      return state;
+      return state as AllProducts[];
     },
     addOne: (state, action:{type:string,payload:AllProducts}) => {
       const product = state.find((item) => item.id === action.payload.id);
@@ -22,7 +22,7 @@ const ProductsSlice = createSlice({
       } else {
         state.unshift(action.payload);
       }
-      return state;
+      return state as AllProducts[];
     },
     // deleteOne: (state, action) => {
     //   state = state.filter((item) => item.id !== action.payload);

@@ -6,7 +6,6 @@ const AddProduct = () => {
   return(
   
     <ProductForm />
-  
 
     )
  

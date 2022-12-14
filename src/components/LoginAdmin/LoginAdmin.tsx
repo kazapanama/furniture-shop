@@ -20,7 +20,7 @@ const LoginAdmin = () => {
        if (admin){
         console.log(admin?.email)
         dispatch(loginUser(admin.email))
-        navigate('/admin/panel')
+        navigate('/admin/dashboard')
        } else {
               setError(true)
        }

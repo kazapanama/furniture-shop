@@ -33,12 +33,10 @@ const OpenedMenu:FC<OpenedMenuProps> = ({isOpen,setIsOpen}) => {
     className={`h-screen w-screen bg-green-500 fixed top-0 left-0 z-50 flex flex-col justify-start items-center transition-all ease-in-out duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
   >
       <button onClick={()=>setIsOpen(false)}
-      className='text-white font-extrabold text-4xl mt-5'>X</button>
-      
-      <Link to='/admin/add'
-      onClick={()=>setIsOpen(false)}>Додати новий товар</Link>
+      className='text-white font-extrabold text-4xl mt-5 mb-28'>X</button>
 
-      <Link to='/admin/panel'
+
+      <Link to='/admin/dashboard' className='text-white font-bold text-2xl mb-5'
       onClick={()=>setIsOpen(false)}>Адмінка</Link>
 
 

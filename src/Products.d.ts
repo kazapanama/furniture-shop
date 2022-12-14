@@ -2,39 +2,36 @@ interface Product {
     id: string;
     name: string;
     price: number;
-    description?: string;
+    display: boolean;
     category: string;
+    description?: string;
     images: string[];
+    width?: number;
+    height?: number;
+    length?: number;
+    manufacturer?: string;
 }
 
 interface Sofa extends Product {
-    width?: number;
-    height?: number;
-    depth?: number;
     color?: string;
 }
 
 interface Chair extends Product {
-    width?: number;
-    height?: number;
-    depth?: number;
     color?: string;
 }
 
 interface Bed extends Product {
-    width?: number;
-    height?: number;
-    depth?: number;
     color?: string;
     material?: string;
 }
 
 interface Closet extends Product {
-    width?: number;
-    height?: number;
-    depth?: number;
     color?: string;
     material?: string;
 }
 
-export type AllProducts = Sofa | Chair | Bed | Closet;
+interface Bedding extends Product {
+
+}
+
+export type AllProducts = Sofa | Chair | Bed | Closet | Bedding;

@@ -14,10 +14,15 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     const item:AllProducts = {
         id:String(Date.now()),
         name: '',
+        display:true,
         price: 0,
         category: 'sofa',
         description: '',
         images: [],
+        width: 0,
+        height: 0,
+        length: 0,
+        manufacturer: '',
     }
     
     const [product, setProduct] = useState(toEdit||item)
@@ -32,10 +37,10 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
        
         //upload to firebase
         addNewProduct(readyForUpload)
-        //reset form
-        setProduct(item)
         //add to redux store
         dispatch(addOne(readyForUpload))
+        //reset form
+        setProduct(item)
         alert('Товар додано')
         //reset images 
         setImgURLs([])
@@ -44,10 +49,10 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     
     
     useEffect(() => {
-    
+        //uploads images to firebase as soon as they are selected
         if (images) {
           images.forEach(async (image) => {
-            await uploadFile(image,setImgURLs,product.id,product.name,product.category);
+            await uploadFile(image,setImgURLs,product.id,product.category);
           });
         }
       }, [images]);
@@ -83,10 +88,33 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
                     <option value="chair">Крісло</option>
                     <option value="closet">Шафа</option>
                     <option value="bed">Ліжко</option>
+                    <option value="bedding">Матрас</option>
                 </select>
             </div>
     
-    
+            <div className="flex w-full items-center">
+                <div className="flex flex-col mb-1">
+                    <label >Ширина</label>
+                    <input className="w-4/6" type="number" value={product.width || ''} onChange={(e)=>setProduct({...product, width:+e.target.value})}/>
+                </div>
+
+                <div className="flex flex-col mb-1">
+                    <label >Довжина</label>
+                    <input className="w-4/6" type="number" value={product.length || ''} onChange={(e)=>setProduct({...product, length:+e.target.value})}/>
+                </div>
+
+                <div className="flex flex-col mb-1">
+                    <label >Висота</label>
+                    <input className="w-4/6" type="number" value={product.height || ''} onChange={(e)=>setProduct({...product, height:+e.target.value})}/>
+                </div>
+            </div>
+            
+            <div className="flex flex-col mb-3">
+                    <label >Виробник</label>
+                    <input type="text" value={product.manufacturer || ''} onChange={(e)=>setProduct({...product, manufacturer:e.target.value})}/>
+                </div>
+
+
             <div className="flex flex-col ">
           <label className="text-left">Вибрати зображення</label>
           <input
