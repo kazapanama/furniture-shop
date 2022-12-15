@@ -29,12 +29,12 @@ export async function getProducts():Promise<AllProducts[]> {
 
 
 
-//adds dummy data to the database
+//adds product to firebase
 export async function addNewProduct(product:AllProducts){
   await setDoc(doc(db, "products",product.id), product);
 }
 
-export   const storage = getStorage();
+export  const storage = getStorage();
 
 
 //uploads image to the storage
@@ -92,4 +92,9 @@ const user = await signInWithEmailAndPassword(auth, email, password)
 //delete single product
 export const deleteProduct = async (id:string) => {
   await deleteDoc(doc(db, "products", id));
+}
+
+//set product visibility
+export async function changeVisibility(product:AllProducts){
+  await setDoc(doc(db, "products",product.id), product);
 }

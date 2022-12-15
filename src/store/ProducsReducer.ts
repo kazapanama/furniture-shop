@@ -12,16 +12,19 @@ const ProductsSlice = createSlice({
       return state as AllProducts[];
     },
     addOne: (state, action:{type:string,payload:AllProducts}) => {
-      const product = state.find((item) => item.id === action.payload.id);
 
-      if (product) {
-        state = [
-          action.payload,
-          ...state.filter((item) => item.id !== product.id),
-        ];
-      } else {
-        state.unshift(action.payload);
-      }
+      state.push(action.payload);
+      
+      return state as AllProducts[];
+    },
+    updateOne: (state, action:{type:string,payload:AllProducts}) => {
+      let product:AllProducts = state.find((item) => item.id === action.payload.id)!;
+
+      state = [
+        action.payload,
+        ...state.filter((item) => item.id !== product.id),
+      ];
+      
       return state as AllProducts[];
     },
     deleteOne: (state, action) => {
@@ -31,6 +34,6 @@ const ProductsSlice = createSlice({
   },
 });
 
-export const { addAll,addOne,deleteOne} = ProductsSlice.actions;
+export const { addAll,addOne,updateOne,deleteOne} = ProductsSlice.actions;
 
 export default ProductsSlice.reducer;

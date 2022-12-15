@@ -3,7 +3,7 @@ import { useAppSelector } from "../hooks/useStore";
 
 const Home = () => {
     
-    const products = useAppSelector(state => state.products)
+    const products = useAppSelector(state => state.products).filter(item => item.display)
     const sofas = products.filter(item => item.category === 'sofa');
     const chairs = products.filter(item => item.category === 'chair');
     const closets = products.filter(item => item.category === 'closet');

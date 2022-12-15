@@ -5,14 +5,27 @@ const AdminAllProducts = () => {
    
    const products = useAppSelector(state => state.products)
    
+   const visibleProducts = products.filter(item => item.display)
+   const hiddenProducts = products.filter(item => !item.display)
+
     return ( 
         <section>
             <h1 className="text-2xl font-bold mb-2 text-center">Список всіх продуктів</h1>
             <div>
-                {products && products.map(item => (
-                    <AdminProducts item={item} key={item.id}/>
+                <h1>ВИДИМІ</h1>
+                {visibleProducts.map(item => (
+                    <AdminProducts item={item} key={item.id} type='visible'/>
+                    ))}
+            </div>
+
+            <div>
+                    <h1>СКРИТІ</h1>
+                {hiddenProducts.map(item => (
+                    <AdminProducts item={item} key={item.id} type='hidden'/>
                 ))}
             </div>
+
+
         </section>
 
     )
