@@ -7,10 +7,12 @@ const AdminAllProducts = () => {
    
     return ( 
         <section>
-            <h1>List Of All Products</h1>
-            {products && products.map(item => (
-                <AdminProducts item={item} />
-            ))}
+            <h1 className="text-2xl font-bold mb-2 text-center">Список всіх продуктів</h1>
+            <div>
+                {products && products.map(item => (
+                    <AdminProducts item={item} key={item.id}/>
+                ))}
+            </div>
         </section>
 
     )

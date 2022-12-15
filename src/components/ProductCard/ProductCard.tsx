@@ -12,13 +12,15 @@ const ProductCard: FC<ProductCardProps> = ({ item }) => {
       <div className=" mb-2 p-2 shadow-sm w-full md:w-72 md:aspect-square flex flex-col items-center border">
         <Link to={'/products/'+item.id}>  <ProductCartImage images={item.images} /></Link>
 
-        <div className='flex justify-between items-end w-full mb-2'>
-          <div className="flex flex-col">
-            <span className="font-bold text-xl">{item.name}</span>
+        <div className='flex flex-col justify-center items-start w-full mb-2'>
+          
+          <span className="font-bold text-xl mb-3">{item.name}</span>
+          
+          <div className='flex justify-between w-full'>
             <span>{item.price} грн</span>
-          </div>
-
           <Link to={'/products/' + item.id}>Детальніше</Link>
+
+          </div>
         </div>
       </div>
     

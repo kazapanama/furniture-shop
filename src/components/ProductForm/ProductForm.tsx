@@ -27,7 +27,7 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     
     const [product, setProduct] = useState(toEdit||item)
     const [images, setImages] = useState<File[] | []>([]);
-    const [imgURLs, setImgURLs] = useState<string[]>(item?.images ? item.images : []);
+    const [imgURLs, setImgURLs] = useState<string[]>(product.images);
 
     const dispatch = useAppDispatch();
 
@@ -59,10 +59,17 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
     
     
     
+      function handleX(image: string): void {
+        //removes image from the form
+        const newURLs = imgURLs.filter((url) => url !== image);
+        //need to add deleting!!! from firebase
+        setImgURLs(newURLs);
+      }
     
+
     return (
         <section className="p-2">
-            <h1>ADD NEW PRODUCT</h1>
+            <h1>{toEdit ? 'EDIT PRODUCT':'ADD NEW PRODUCT'}</h1>
             <form onSubmit={(e)=>handleSubmit(e)}>
     
             <div className="flex flex-col mb-3">
@@ -124,11 +131,17 @@ const ProductForm:FC<ProductFormProps> = ({toEdit}) => {
             onChange={(e:any ) =>  setImages([ ...e.target.files ] )}
     
           />
-    
-        {imgURLs.map(image=><img  src={image} key={image} className='w-20 h-20 cover'/>)}     
         </div>
+        
+        
+       {imgURLs.map(image=>(
+              <div className="flex  gap-2 ">
+                <img  src={image} key={image} className='w-20 h-20 cover'/>
+                <button onClick={()=>handleX(image)}>X</button>
+            </div>
+       ))}
     
-            <button type='submit'>ADD</button>
+            <button type='submit' className="border mt-2">ADD</button>
     
 
             </form>

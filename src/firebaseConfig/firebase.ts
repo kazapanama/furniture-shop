@@ -89,3 +89,7 @@ const user = await signInWithEmailAndPassword(auth, email, password)
 }
 
 
+//delete single product
+export const deleteProduct = async (id:string) => {
+  await deleteDoc(doc(db, "products", id));
+}

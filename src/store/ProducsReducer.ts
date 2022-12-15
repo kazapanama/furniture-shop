@@ -24,13 +24,13 @@ const ProductsSlice = createSlice({
       }
       return state as AllProducts[];
     },
-    // deleteOne: (state, action) => {
-    //   state = state.filter((item) => item.id !== action.payload);
-    //   return state;
-    // },
+    deleteOne: (state, action) => {
+      state = state.filter((item) => item.id !== action.payload);
+      return state;
+    },
   },
 });
 
-export const { addAll,addOne} = ProductsSlice.actions;
+export const { addAll,addOne,deleteOne} = ProductsSlice.actions;
 
 export default ProductsSlice.reducer;
