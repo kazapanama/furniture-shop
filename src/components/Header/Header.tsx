@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import {FC, useState} from 'react';
+import CartIcon from '../atoms/CartIcon/CartIcon';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,9 +9,14 @@ const Header = () => {
       <Link to="/" className="flex items-center text-2xl font-bold text-white">
         Furniture Store
       </Link>
-      <button onClick={()=>setIsOpen(true)}>
-        <img src="/icons/burger.png" alt="burger" />
-      </button>
+      
+      <div className='flex justify-center gap-5'>
+        <CartIcon />
+        <button onClick={()=>setIsOpen(true)}>
+          <img src="/icons/burger.png" alt="burger" />
+        </button>
+
+      </div>
       <OpenedMenu isOpen={isOpen} setIsOpen={setIsOpen}/>
     </nav>
   );

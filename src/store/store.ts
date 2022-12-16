@@ -1,11 +1,12 @@
 import { configureStore,combineReducers } from "@reduxjs/toolkit";
 import products from "./ProducsReducer";
 import user from "./UserReducer";
-
+import cart from "./CartReducer";
 
 const rootReducer = combineReducers({
     products,
     user,
+    cart
 })
 
 

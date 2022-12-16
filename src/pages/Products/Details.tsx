@@ -1,11 +1,25 @@
 import { useParams } from "react-router-dom";
-import { useAppSelector } from "../../hooks/useStore";
+import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
+import { increaseByOne } from "../../store/CartReducer";
 
 
 const Details = () => {
     const {id} = useParams();
-
+    const dispatch = useAppDispatch();
     const product = useAppSelector(state => state.products.find(item => item.id === id))
+
+
+    const addToCart = () => {
+        
+        const cartItem = {
+            id: product?.id,
+            price: product?.price,
+        }
+        
+        
+        dispatch(increaseByOne(cartItem))
+
+    }
 
 
     return ( 
@@ -49,6 +63,14 @@ const Details = () => {
                     <span><strong>{product?.length}</strong>см</span> 
                 </div>
             </div>
+
+            <div className="w-full flex justify-center">
+                <button onClick={addToCart} className='px-5 py-2 rounded-full bg-green-500 w-48 text-white font-bold'>
+                    Додати в кошик
+                </button>
+
+            </div>
+
         </section>
 
         <section className="">

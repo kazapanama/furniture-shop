@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import Dashboard from './pages/Admin/Dashboard';
 import Orders from './pages/Admin/Orders';
 import AdminAllProducts from './pages/Admin/AllProducts';
+import Checkout from './pages/Checkout';
 
 function App() {
 
@@ -37,8 +38,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/products" element={<AllProducts />} />
         <Route path="/products/:id" element={<Details />} />
+
         <Route path="/admin" element={<Login />} />
         {/* <Route element={<ProtectedRoutes />}> */} //private routes enabler
           <Route path="/admin/dashboard" element={<Dashboard />} />
