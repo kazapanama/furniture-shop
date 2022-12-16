@@ -72,6 +72,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
           <label>Назва</label>
           <input
             type="text"
+            required
             value={product.name}
             onChange={(e) => setProduct({ ...product, name: e.target.value })}
           />
@@ -82,6 +83,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
             <label>Ціна(грн)</label>
             <input
               type="number"
+              required
               value={product.price || ''}
               onChange={(e) =>
                 setProduct({ ...product, price: +e.target.value })
@@ -177,16 +179,21 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
           />
         </div>
 
-        {imgURLs.map((image) => (
-          <div className="flex  gap-2 " key={image}>
-            <img src={image} className="w-20 h-20 cover" />
-            <button onClick={() => handleX(image)}>X</button>
-          </div>
-        ))}
+            <div className='flex gap-3 flex-wrap mb-2'>
+              {imgURLs.map((image) => (
+                <div className="flex  gap-2 " key={image}>
+                  <img src={image} className="w-12 h-12 cover" />
+                  <button onClick={() => handleX(image)} className='font-bold text-2xl'>X</button>
+                </div>
+              ))}
+            </div>
 
-        <button type="submit" className="border mt-2">
-          ADD
-        </button>
+          <div className='w-full flex justify-center'>
+
+            <button type="submit" className="border mt-2 bg-green-500 rounded-full font-bold px-5 py-2 text-white">
+              {toEdit ? 'Зберегти' : 'Додати'}
+            </button>
+          </div>
       </form>
     </section>
   );
