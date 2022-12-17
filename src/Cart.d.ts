@@ -1,5 +1,5 @@
-export interface CartItem {
-    id: number;
+export interface ICartItem {
+    id: string;
     price: number;
     quantity: number;
 }
