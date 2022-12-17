@@ -6,7 +6,7 @@ const Checkout = () => {
     
     const cart = useAppSelector(state => state.cart)
    
-    if (cart.length === 0) return <p className="text-center">Кошик порожній</p>
+    if (cart.length === 0) return (<p className="text-center">Ви досі нічого не обрали 🥺</p>)
     
     return ( 
         <section className="p-2">

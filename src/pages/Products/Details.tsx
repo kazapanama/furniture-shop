@@ -49,19 +49,23 @@ const Details = () => {
                 <p className="text-sm">{product?.description}</p>
             </div>
                 
-            <div className="bg-green-400 flex justify-around py-2">
-                <div className="flex flex-col items-center">
+            <div className=" flex justify-around py-2">
+           
+                <div className="flex flex-col items-center bg-slate-200 p-2 rounded-md">
                     <span>Ширина:</span>
                     <span><strong>{product?.width}</strong>см</span> 
                 </div>
-                <div className="flex flex-col items-center">
+
+                <div className="flex flex-col items-center bg-slate-200 p-2 rounded-md">
                     <span>Висота:</span>
                     <span><strong>{product?.height}</strong>см</span> 
                 </div>
-                <div className="flex flex-col items-center">
+
+                <div className="flex flex-col items-center bg-slate-200 p-2 rounded-md">
                     <span>Довжина:</span>
                     <span><strong>{product?.length}</strong>см</span> 
                 </div>
+
             </div>
 
             <div className="w-full flex justify-center">

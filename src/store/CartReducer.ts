@@ -26,7 +26,8 @@ const CartSlice = createSlice({
       if (item.quantity>1) {
         item.quantity--;
       } else {
-        state.filter((item) => item.id !== action.payload.id);
+
+        state = state.filter((item) => item.id !== action.payload.id);
       }
 
       return state 
