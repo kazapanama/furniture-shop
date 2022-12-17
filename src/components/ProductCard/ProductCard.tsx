@@ -11,16 +11,19 @@ const ProductCard: FC<ProductCardProps> = ({ item }) => {
     <div className=" mb-2 p-2 shadow-md w-full md:w-72 md:aspect-square flex flex-col items-center border  rounded-md">
       <Link to={'/products/' + item.id}>
         <ProductCartImage images={item.images} />
+      </Link>
         <div className="flex flex-col justify-center items-start w-full mb-2">
-          <span className="font-bold text-xl mb-3 text-center w-full">{item.name.length>40 ? item.name.slice(0,40)+'...':item.name}</span>
-
+        
+        <Link to={'/products/' + item.id} className="font-bold text-xl mb-3 text-center w-full">
+          {item.name.length>40 ? item.name.slice(0,40)+'...':item.name}
+        </Link>
           <div className="flex  w-full text-xl">
-            <span>
+          <Link to={'/products/' + item.id}>
               <strong>{item.price}</strong> грн
-            </span>
+          </Link>
           </div>
         </div>
-      </Link>
+      
     </div>
   );
 };

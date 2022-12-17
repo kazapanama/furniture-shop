@@ -98,3 +98,11 @@ export const deleteProduct = async (id:string) => {
 export async function changeVisibility(product:AllProducts){
   await setDoc(doc(db, "products",product.id), product);
 }
+
+//delete image from storage from url
+
+export const deleteImage = async (url:string) => {
+  const storageRef = ref(storage, url);
+  // console.log(storageRef);
+  await deleteObject(storageRef);
+}

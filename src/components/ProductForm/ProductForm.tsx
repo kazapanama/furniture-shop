@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { addNewProduct, uploadFile } from '../../firebaseConfig/firebase';
+import { addNewProduct, deleteImage, uploadFile } from '../../firebaseConfig/firebase';
 import { useAppDispatch } from '../../hooks/useStore';
 import { AllProducts } from '../../Products';
 import { addOne, updateOne } from '../../store/ProducsReducer';
@@ -26,10 +26,12 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
   const [product, setProduct] = useState(toEdit || item);
   const [images, setImages] = useState<File[] | []>([]);
   const [imgURLs, setImgURLs] = useState<string[]>(product.images);
+  const [queForDelete, setQueForDelete] = useState<string[]>([])
 
   const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault();
     const readyForUpload = { ...product, images: imgURLs };
 
@@ -44,6 +46,10 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
     alert(toEdit? 'Товар відредаговано' : 'Товар додано');
     //reset images
     setImgURLs([]);
+    queForDelete.forEach(async(url)=>{
+      //delete images from firebase
+      await deleteImage(url)
+    })
   };
 
   useEffect(() => {
@@ -56,6 +62,8 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
   }, [images]);
 
   function handleX(image: string): void {
+    setQueForDelete([...queForDelete, image])
+    console.log(setQueForDelete)
     //removes image from the form
     const newURLs = imgURLs.filter((url) => url !== image);
     //need to add deleting!!! from firebase
