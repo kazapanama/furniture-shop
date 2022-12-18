@@ -12,7 +12,7 @@ const CartIcon = () => {
             {cartLength > 0 && <div className=" absolute right-0 bottom-0 bg-red-500 rounded-full text-xs w-4 h-4 text-white flex justify-center items-center">
                 {cartLength}
             </div>}
-            <img src="/icons/cart.png" alt="cart icon" className="w-6 h-6 object-cover"/>
+            <img src="/icons/cart.svg" alt="cart icon" className="w-6 h-6 object-cover"/>
         </Link>
      );
 }

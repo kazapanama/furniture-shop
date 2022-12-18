@@ -12,17 +12,21 @@ const AdminAllProducts = () => {
         <section>
             <h1 className="text-2xl font-bold mb-2 text-center">Список всіх продуктів</h1>
             <div>
-                <h1>ВИДИМІ</h1>
+                <h2>ВИДИМІ</h2>
+                {visibleProducts.length === 0 ? <p>Немає видимих продуктів</p> : null}
                 {visibleProducts.map(item => (
                     <AdminProducts item={item} key={item.id} type='visible'/>
                     ))}
+                    <hr />
             </div>
 
             <div>
-                    <h1>СКРИТІ</h1>
+                    <h2>Приховані</h2>
+                    {hiddenProducts.length === 0 ? <p>Немає скритих продуктів</p> : null}
                 {hiddenProducts.map(item => (
                     <AdminProducts item={item} key={item.id} type='hidden'/>
                 ))}
+                <hr />
             </div>
 
 

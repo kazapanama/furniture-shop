@@ -14,8 +14,8 @@ const ProductCard: FC<ProductCardProps> = ({ item }) => {
       </Link>
         <div className="flex flex-col justify-center items-start w-full mb-2">
         
-        <Link to={'/products/' + item.id} className="font-bold text-xl mb-3 text-center w-full">
-          {item.name.length>40 ? item.name.slice(0,40)+'...':item.name}
+        <Link to={'/products/' + item.id} className="font-bold text-xl mb-3 w-full">
+          {item.name.length>48 ? item.name.slice(0,48)+'...':item.name}
         </Link>
           <div className="flex  w-full text-xl">
           <Link to={'/products/' + item.id}>
