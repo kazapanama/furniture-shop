@@ -11,14 +11,14 @@ const Home = () => {
     const beddings = products.filter(item => item.category === 'bedding');
 
     return ( 
-    <div className="">
+    <main className="">
 
        {sofas.length>0 && <CategorySection title="Дивани" items={sofas}/> }
        {chairs.length>0 && <CategorySection title="Крісла" items={chairs}/>} 
-        {closets.length>0 && <CategorySection title="Шафи" items={closets}/>}
-        {beds.length>0 && <CategorySection title="Ліжка" items={beds}/>}
-        {beddings.length>0 && <CategorySection title="Матраци" items={beddings}/>}
-    </div>
+       {closets.length>0 && <CategorySection title="Шафи" items={closets}/>}
+       {beds.length>0 && <CategorySection title="Ліжка" items={beds}/>}
+       {beddings.length>0 && <CategorySection title="Матраци" items={beddings}/>}
+    </main>
     
     );
 }

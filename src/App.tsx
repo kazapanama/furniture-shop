@@ -16,6 +16,8 @@ import Dashboard from './pages/Admin/Dashboard';
 import Orders from './pages/Admin/Orders';
 import AdminAllProducts from './pages/Admin/AllProducts';
 import Checkout from './pages/Checkout';
+import About from './pages/About';
+import Delivery from './pages/Delivery';
 
 function App() {
 
@@ -41,6 +43,8 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/products" element={<AllProducts />} />
         <Route path="/products/:id" element={<Details />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/delivery" element={<Delivery />} />
 
         <Route path="/admin" element={<Login />} />
         {/* <Route element={<ProtectedRoutes />}> //private routes enabler */}

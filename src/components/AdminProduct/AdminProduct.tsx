@@ -32,7 +32,7 @@ const AdminProduct: FC<AdminProductProps> = ({ item,type }) => {
   return (
     <div  className={type==='hidden' ? 'bg-gray-300 mb-1 hr py-2' : 'bg-white mb-1 hr py-2'}>
       <div className='flex items-center gap-3'>
-        <img src={item.images && item.images.length > 0 ? item.images[0]:'/placeholder.png'} alt={item.name + 'image'} 
+        <img src={item.images && item.images.length > 0 ? item.images[0]:'/placeholder.jpg'} alt={item.name + 'image'} 
         className='w-12 h-12 object-cover'/>
         <h2>{item.name}</h2>
       </div>
@@ -44,7 +44,7 @@ const AdminProduct: FC<AdminProductProps> = ({ item,type }) => {
           <img src='/icons/edit.svg' alt='edit button' className='w-8 h-8 p-2 bg-cyan-500 '/>
           </Link>
         <button onClick={handleShow}>
-          <img src={item.display ? '/icons/show.png' : '/icons/hidden.png'} alt='show button' className='w-8 h-8 p-2 bg-green-500'/>
+          <img src={item.display ? '/icons/show.svg' : '/icons/hidden.svg'} alt='show button' className='w-8 h-8 p-2 bg-green-500'/>
           </button>
       </div>
       <hr />

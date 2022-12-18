@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import ImagesSlider from "../../components/atoms/ImagesSlider/ImagesSlider";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
 
@@ -16,17 +17,24 @@ const Details = () => {
             price: product?.price,
         }
         
-        
         dispatch(increaseByOne(cartItem))
-
     }
 
+    if (!product){
+        return (
+            <section className="w-full flex flex-col justify-center items-center gap-5">
+                <h1 className="text-3xl text-bold">Товар не знайдено</h1>
+                <Link to='/'>Повернутися на <strong className="text-green-500">Головну</strong></Link>
+            </section>
+        )
+    }
 
     return ( 
         <>
         <section className="flex flex-col gap-3 p-2">
             <div>
-                <img src={product?.images[0]} alt="product image" />
+                <ImagesSlider images={product.images}/>
+               
             </div>
 
             <h1 className="font-bold text-xl">{product?.name}</h1>
