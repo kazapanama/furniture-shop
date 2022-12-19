@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import ButtonRounded from "../../components/atoms/ButtonRounded/ButtonRounded";
 import ImagesSlider from "../../components/atoms/ImagesSlider/ImagesSlider";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
@@ -77,10 +78,9 @@ const Details = () => {
             </div>
 
             <div className="w-full flex justify-center">
-                <button onClick={addToCart} className='px-5 py-2 rounded-full bg-green-500 w-48 text-white font-bold'>
-                    Додати в кошик
-                </button>
+    
 
+            <ButtonRounded text='Додати в кошик' onClick={addToCart}/>
             </div>
 
         </section>

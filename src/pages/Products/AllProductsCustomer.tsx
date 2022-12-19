@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SearchAndFilters from "../../components/atoms/SearchAndFilters/SearchAndFilters";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../../components/molecules/ProductCard/ProductCard";
 import { useAppSelector } from "../../hooks/useStore";
 import { AllProducts } from "../../types/Products";
 

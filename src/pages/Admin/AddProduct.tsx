@@ -1,5 +1,5 @@
 
-import ProductForm from "../../components/ProductForm/ProductForm";
+import ProductForm from "../../components/organisms/ProductForm/ProductForm";
 
 
 const AddProduct = () => {

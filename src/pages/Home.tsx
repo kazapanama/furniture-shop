@@ -1,4 +1,4 @@
-import CategorySection from "../components/CategorySection/CategorySection";
+import CategorySection from "../components/organisms/CategorySection/CategorySection";
 import { useAppSelector } from "../hooks/useStore";
 
 const Home = () => {

@@ -1,10 +1,10 @@
-import { AllProducts } from '../../Products';
+import { AllProducts } from '../../../types/Products';
 import { FC } from 'react';
 import {Link} from 'react-router-dom';
-import { deleteImage, deleteProduct } from '../../firebaseConfig/firebase';
-import { addOne, deleteOne, updateOne } from '../../store/ProducsReducer';
-import { useAppDispatch } from '../../hooks/useStore';
-import { changeVisibility } from '../../firebaseConfig/firebase';
+import { deleteImage, deleteProduct } from '../../../firebaseConfig/firebase';
+import { addOne, deleteOne, updateOne } from '../../../store/ProducsReducer';
+import { useAppDispatch } from '../../../hooks/useStore';
+import { changeVisibility } from '../../../firebaseConfig/firebase';
 
 interface AdminProductProps {
   item: AllProducts;
