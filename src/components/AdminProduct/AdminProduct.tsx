@@ -1,7 +1,7 @@
 import { AllProducts } from '../../Products';
 import { FC } from 'react';
 import {Link} from 'react-router-dom';
-import { deleteProduct } from '../../firebaseConfig/firebase';
+import { deleteImage, deleteProduct } from '../../firebaseConfig/firebase';
 import { addOne, deleteOne, updateOne } from '../../store/ProducsReducer';
 import { useAppDispatch } from '../../hooks/useStore';
 import { changeVisibility } from '../../firebaseConfig/firebase';
@@ -15,17 +15,26 @@ const AdminProduct: FC<AdminProductProps> = ({ item,type }) => {
 
   const dispatch = useAppDispatch();  
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string,images:string[]) => {
    if (confirm('Are you sure you want to delete this product?')){
-     await deleteProduct(id);
+    //delete  from firebase db 
+    await deleteProduct(id);
+    //delete from redux store
      dispatch(deleteOne(id));
+    //delete images from firebase storage
+     images.forEach(async(url)=>{
+      //delete images from firebase
+      await deleteImage(url)
+    })
      alert('Product deleted');
    }
 }
   const handleShow = () => {
+    //new item with changed display property
     const newItem:AllProducts = {...item, display:!item.display}
-    
+    //change display property in firebase
     changeVisibility(newItem)
+    //change display property in redux store
     dispatch(updateOne(newItem))
   }
 
@@ -37,7 +46,7 @@ const AdminProduct: FC<AdminProductProps> = ({ item,type }) => {
         <h2>{item.name}</h2>
       </div>
       <div className='flex justify-center gap-3 pb-2'>
-        <button onClick={()=>handleDelete(item.id)}>
+        <button onClick={()=>handleDelete(item.id,item.images)}>
           <img src='/icons/delete.svg' alt='delete button' className='w-8 h-8 p-2 bg-red-500'/>
         </button>
         <Link to={'/admin/product/'+item.id}>
