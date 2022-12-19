@@ -7,8 +7,8 @@ import { useAppSelector } from '../../hooks/useStore';
 const Edit = () => {
 
 const {id} = useParams();
-const products = useAppSelector(state => state.products);
-const item = products.find(item => item.id === id);
+const item = useAppSelector(state => state.products.products).find(item => item.id === id);
+
 
     return ( <ProductForm toEdit={item}/> );
 }

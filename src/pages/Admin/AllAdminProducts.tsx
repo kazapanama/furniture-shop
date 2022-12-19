@@ -3,7 +3,7 @@ import AdminProducts from "../../components/AdminProduct/AdminProduct";
 
 const AdminAllProducts = () => {
    
-   const products = useAppSelector(state => state.products)
+   const products = useAppSelector(state => state.products).products
    
    const visibleProducts = products.filter(item => item.display)
    const hiddenProducts = products.filter(item => !item.display)

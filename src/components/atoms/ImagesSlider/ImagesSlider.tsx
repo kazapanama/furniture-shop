@@ -55,6 +55,7 @@ const ImagesSlider:FC<ImagesSliderProps> = ({ images }) => {
               <img src={image} alt='Зображення квартири'
               onClick={() => {
             setShowFull(true)
+            
             setCurrentFull(i)
               }} 
               className='w-full object-cover'/>

@@ -1,16 +1,15 @@
-import { getProducts } from './firebaseConfig/firebase';
+
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Details from './pages/Products/Details';
 import Login from './pages/Admin/Login';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import { useAppDispatch } from './hooks/useStore';
-import { addAll } from './store/ProducsReducer';
+
 import EditProduct from './pages/Admin/EditProduct';
 import AddProduct from './pages/Admin/AddProduct';
 import ProtectedRoutes from './helpers/ProtectedRoutes';
-import { useEffect } from 'react';
+
 import Dashboard from './pages/Admin/Dashboard';
 import Orders from './pages/Admin/Orders';
 import AdminAllProducts from './pages/Admin/AllAdminProducts';
@@ -18,21 +17,19 @@ import Checkout from './pages/Checkout';
 import About from './pages/About';
 import Delivery from './pages/Delivery';
 import AllProductsCustomer from './pages/Products/AllProductsCustomer';
+import { useEffect } from 'react';
+import { fetchProducts } from './store/ProducsReducer';
+import { useAppDispatch } from './hooks/useStore';
 
 
 function App() {
 
-  const dispatch = useAppDispatch();
+
+  const dispatch = useAppDispatch()
 
   useEffect(()=>{
-    const setupData = async () => {
-      const products = await getProducts();
-      dispatch(addAll(products));
-    }
-    setupData();
-    console.log('fetched data')
+    dispatch(fetchProducts())
   },[])
-
 
 
 

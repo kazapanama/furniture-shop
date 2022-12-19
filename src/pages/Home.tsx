@@ -3,12 +3,28 @@ import { useAppSelector } from "../hooks/useStore";
 
 const Home = () => {
     
-    const products = useAppSelector(state => state.products).filter(item => item.display)
+
+    const productsData = useAppSelector(state => state.products)
+
+
+    const products = productsData.products.filter(item => item.display)
     const sofas = products.filter(item => item.category === 'sofa');
     const chairs = products.filter(item => item.category === 'chair');
     const closets = products.filter(item => item.category === 'closet');
     const beds = products.filter(item => item.category === 'bed');
     const beddings = products.filter(item => item.category === 'bedding');
+
+
+
+    if (productsData.loading) {
+        return <p>Завантаження...</p>
+    }
+
+    if (productsData.error) {
+        return <p>ШОСЬ НЕ ТАК</p>
+    }
+
+
 
     return ( 
     <main className="">

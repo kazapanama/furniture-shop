@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/useStore";
-import { ICartItem } from "../../../Cart";
+import { ICartItem } from "../../../types/Cart";
 import { decreaseByOne, increaseByOne } from "../../../store/CartReducer";
 
 interface CartItemProps {
@@ -10,7 +10,7 @@ interface CartItemProps {
 
 const CartItem:FC<CartItemProps> = ({item}) => {
 
-    const product = useAppSelector(state => state.products.find(product => product.id === item.id))!
+    const product = useAppSelector(state => state.products).products.find(product => product.id === item.id)!
 
     const dispatch = useAppDispatch()
 

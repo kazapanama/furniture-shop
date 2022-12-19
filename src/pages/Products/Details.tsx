@@ -7,7 +7,7 @@ import { increaseByOne } from "../../store/CartReducer";
 const Details = () => {
     const {id} = useParams();
     const dispatch = useAppDispatch();
-    const product = useAppSelector(state => state.products.find(item => item.id === id))
+    const product = useAppSelector(state => state.products).products.find(item => item.id === id)
 
 
     const addToCart = () => {
