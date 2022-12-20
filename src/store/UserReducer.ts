@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Admin } from "../Admin"; 
+import { Admin } from "../types/Admin"; 
 
 const initialState: Admin = {
     email: "",

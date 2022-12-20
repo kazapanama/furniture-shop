@@ -1,3 +1,4 @@
+
 import { FC } from "react";
 import { AllProducts } from "../../../types/Products";
 import ProductCard from "../../molecules/ProductCard/ProductCard";

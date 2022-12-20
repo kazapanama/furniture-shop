@@ -6,13 +6,8 @@ const SearchAndFilters = () => {
 
     const [isOpen, setIsOpen] = useState(false)
 
-    const handleClick = () => {
-        console.log('clicked')
 
-    }
-    
-    
-    
+
     
     return ( 
         <>
