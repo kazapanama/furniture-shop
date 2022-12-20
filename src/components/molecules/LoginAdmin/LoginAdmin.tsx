@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {signInAdmin} from '../../firebaseConfig/firebase'
-import { useAppDispatch } from '../../hooks/useStore';
-import { loginUser } from '../../store/UserReducer';
+import {signInAdmin} from '../../../firebaseConfig/firebase'
+import { useAppDispatch } from '../../../hooks/useStore';
+import { loginUser } from '../../../store/UserReducer';
 
 const LoginAdmin = () => {
     

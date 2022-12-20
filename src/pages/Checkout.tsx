@@ -1,8 +1,19 @@
 
+import ButtonRounded from "../components/atoms/ButtonRounded/ButtonRounded";
 import CartItem from "../components/atoms/CartItem/CartItem";
-import { useAppSelector } from "../hooks/useStore";
+import { useAppDispatch, useAppSelector } from "../hooks/useStore";
+import { resetToEmpty } from "../store/CartReducer";
 
 const Checkout = () => {
+
+    const dispatch = useAppDispatch()
+
+    const handleCheckout = () => {
+        console.log('Замовлення додано')
+        dispatch(resetToEmpty())
+    }
+
+
     
     const cart = useAppSelector(state => state.cart)
    
@@ -20,9 +31,8 @@ const Checkout = () => {
 
             <div className="flex flex-col">
                <span>Всього до оплати: <strong>{cart.reduce((acc, item) => acc += item.quantity * item.price, 0)}</strong> грн</span>
-                <button>
-                    Оформити замовлення
-                </button>
+              
+                <ButtonRounded text='Оформити замовлення' onClick={handleCheckout}/>
             </div>
 
         </section>

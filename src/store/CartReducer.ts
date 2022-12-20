@@ -32,23 +32,14 @@ const CartSlice = createSlice({
 
       return state 
     },
-    // updateOne: (state, action:{type:string,payload:AllProducts}) => {
-    //   let product:AllProducts = state.find((item) => item.id === action.payload.id)!;
+    resetToEmpty: (state) => {
+      state = initialState;
 
-    //   state = [
-    //     action.payload,
-    //     ...state.filter((item) => item.id !== product.id),
-    //   ];
-      
-    //   return state as AllProducts[];
-    // },
-    // deleteOne: (state, action) => {
-    //   state = state.filter((item) => item.id !== action.payload);
-    //   return state;
-    // },
+      return state 
+    },
   },
 });
 
-export const { increaseByOne,decreaseByOne} = CartSlice.actions;
+export const { increaseByOne,decreaseByOne,resetToEmpty} = CartSlice.actions;
 
 export default CartSlice.reducer;

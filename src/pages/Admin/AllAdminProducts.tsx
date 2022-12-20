@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../hooks/useStore";
-import AdminProducts from "../../components/AdminProduct/AdminProduct"; 
+import AdminProducts from "../../components/molecules/AdminProduct/AdminProduct"; 
 
 const AdminAllProducts = () => {
    

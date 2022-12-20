@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import {FC, useState} from 'react';
-import CartIcon from '../atoms/CartIcon/CartIcon';
+import CartIcon from '../../atoms/CartIcon/CartIcon';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

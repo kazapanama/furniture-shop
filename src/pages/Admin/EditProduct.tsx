@@ -1,5 +1,5 @@
 import{ useParams } from 'react-router-dom';
-import ProductForm from '../../components/ProductForm/ProductForm';
+import ProductForm from '../../components/organisms/ProductForm/ProductForm';
 import { useAppSelector } from '../../hooks/useStore';
 
 

@@ -1,6 +1,7 @@
+
 import { FC } from "react";
-import { AllProducts } from "../../types/Products";
-import ProductCard from "../ProductCard/ProductCard";
+import { AllProducts } from "../../../types/Products";
+import ProductCard from "../../molecules/ProductCard/ProductCard";
 
 
 
