@@ -1,7 +1,14 @@
 import Filters from "../Filters/Filters";
-import { useState } from "react";
+import { FC, useState } from "react";
 
-const SearchAndFilters = () => {
+
+interface SearchAndFiltersProps {
+    setFilterText: (text: string) => void;
+}
+
+
+
+const SearchAndFilters:FC<SearchAndFiltersProps> = ({setFilterText}) => {
     
 
     const [isOpen, setIsOpen] = useState(false)
@@ -17,7 +24,7 @@ const SearchAndFilters = () => {
                     <button onClick={()=>setIsOpen(!isOpen)}>
                         <img src="/icons/filter.svg" alt="search" className="w-6 h-6"/>
                     </button >
-                    <input type="text" placeholder="Пошук" />
+                    <input type="text" placeholder="Пошук" onChange={(e)=>setFilterText(e.target.value)}/>
                 </div>
             </div>
 

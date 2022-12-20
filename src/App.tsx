@@ -20,6 +20,7 @@ import AllProductsCustomer from './pages/Products/AllProductsCustomer';
 import { useEffect } from 'react';
 import { fetchProducts } from './store/ProducsReducer';
 import { useAppDispatch } from './hooks/useStore';
+import NotFound from './pages/404';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/admin/add" element={<AddProduct />} />
           <Route path="/admin/product/:id" element={<EditProduct />} />
         {/* </Route> */}
+      <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>

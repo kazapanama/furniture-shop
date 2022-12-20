@@ -7,20 +7,29 @@ import { AllProducts } from "../../types/Products";
 
 const  AllProductsCustomer = () => {
     
+    const [filterText,setFilterText] = useState<string>('')
+    const [products,setProducts] = useState<AllProducts[]>([])
+
     const productsData = useAppSelector(state => state.products)
     
     
-    const aaa = productsData.products.filter(item => item.display)
+    const displayedProducts = productsData.products.filter(item => item.display)
     
-    const [products,setProducts] = useState<AllProducts[]>([])
 
 
 
     useEffect(() => {
-        setProducts(aaa)
+        setProducts(displayedProducts)
     }, [productsData])
 
+    useEffect(() => {
 
+
+
+
+        const filteredByName = displayedProducts.filter(item => item.name.toLowerCase().includes(filterText.toLowerCase()))
+        setProducts(filteredByName)
+    },[filterText])
 
 
     
@@ -32,18 +41,24 @@ const  AllProductsCustomer = () => {
             return <p>ШОСЬ НЕ ТАК</p>
    }
 
+
+
     
     return ( 
-
         
-        <section className="relative">
-        {products && <SearchAndFilters />}
-        <div className="">
-            {products.length>0 && products.map(item => (
-                <ProductCard item={item} key={item.id} />
-            ))}
 
-        </div>
+        <section className="relative min-h-screen">
+            {products && <SearchAndFilters setFilterText={setFilterText}/>}
+            
+            
+            {products.length === 0 && <p>Немає продуктів за даними критеріями</p>}
+            
+            <div className="">
+                {products.length>0 && products.map(item => (
+                    <ProductCard item={item} key={item.id} />
+                ))}
+
+            </div>
         </section>
        
        

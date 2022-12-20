@@ -25,8 +25,7 @@ const Home = () => {
         {productsData.loading && <Loader />}
         {categories.map(category => {
            const items =  products.filter(item => item.category === category)
-
-              return items.length>0 && <CategorySection title={CategoriesDictionary[category]} items={items}/>
+              return items.length>0 && <CategorySection title={CategoriesDictionary[category]} items={items} key={category}/>
         })}
 
 

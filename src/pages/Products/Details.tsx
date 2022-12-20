@@ -2,6 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import ButtonRounded from "../../components/atoms/ButtonRounded/ButtonRounded";
 import ImagesSlider from "../../components/atoms/ImagesSlider/ImagesSlider";
 import Loader from "../../components/atoms/Loader/Loader";
+
+import SizesSection from "../../components/molecules/SizesSection/SizesSection";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
 
@@ -48,7 +50,6 @@ const Details = () => {
         <section className="flex flex-col gap-3 p-2">
             <div>
                 <ImagesSlider images={product.images}/>
-               
             </div>
 
             <h1 className="font-bold text-xl">{product?.name}</h1>
@@ -67,34 +68,21 @@ const Details = () => {
                 </div>
             </div>
 
+
+       <SizesSection width={product.width} length={product.length} height={product.height}/>
+
+       <div className="w-full flex justify-center">
+           <ButtonRounded text='Додати в кошик' onClick={addToCart}/>
+       </div>
+
+
+
+
             <div className="flex gap-2">
                 <p className="text-sm">{product?.description}</p>
             </div>
                 
-            <div className=" flex justify-around py-2">
-           
-                <div className="flex flex-col items-center bg-slate-200 p-2 rounded-md">
-                    <span>Ширина:</span>
-                    <span><strong>{product?.width}</strong>см</span> 
-                </div>
-
-                <div className="flex flex-col items-center bg-slate-200 p-2 rounded-md">
-                    <span>Висота:</span>
-                    <span><strong>{product?.height}</strong>см</span> 
-                </div>
-
-                <div className="flex flex-col items-center bg-slate-200 p-2 rounded-md">
-                    <span>Довжина:</span>
-                    <span><strong>{product?.length}</strong>см</span> 
-                </div>
-
-            </div>
-
-            <div className="w-full flex justify-center">
-    
-
-            <ButtonRounded text='Додати в кошик' onClick={addToCart}/>
-            </div>
+          
 
         </section>
 
