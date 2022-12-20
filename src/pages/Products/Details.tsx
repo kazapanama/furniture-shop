@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import ImagesSlider from "../../components/atoms/ImagesSlider/ImagesSlider";
+import Loader from "../../components/atoms/Loader/Loader";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
 
@@ -7,7 +8,8 @@ import { increaseByOne } from "../../store/CartReducer";
 const Details = () => {
     const {id} = useParams();
     const dispatch = useAppDispatch();
-    const product = useAppSelector(state => state.products).products.find(item => item.id === id)
+    const productsData = useAppSelector(state => state.products)
+    const product = productsData.products.find(item => item.id === id)
 
 
     const addToCart = () => {
@@ -20,6 +22,16 @@ const Details = () => {
         dispatch(increaseByOne(cartItem))
     }
 
+
+    if (productsData.loading){
+        return (
+            <Loader />
+        )
+    }
+
+
+
+
     if (!product){
         return (
             <section className="w-full flex flex-col justify-center items-center gap-5">
@@ -31,6 +43,7 @@ const Details = () => {
 
     return ( 
         <>
+
         <section className="flex flex-col gap-3 p-2">
             <div>
                 <ImagesSlider images={product.images}/>

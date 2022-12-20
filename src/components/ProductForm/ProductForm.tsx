@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { addNewProduct, deleteImage, uploadFile } from '../../firebaseConfig/firebase';
 import { useAppDispatch } from '../../hooks/useStore';
-import { AllProducts } from '../../Products';
+import { AllProducts } from '../../types/Products';
 import { addOne, updateOne } from '../../store/ProducsReducer';
 
 interface ProductFormProps {

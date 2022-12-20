@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { AllProducts } from "../../Products";
+import { AllProducts } from "../../types/Products";
 import ProductCard from "../ProductCard/ProductCard";
 
 

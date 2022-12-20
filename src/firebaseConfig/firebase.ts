@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { collection, deleteDoc, doc, getDocs, getFirestore, setDoc} from 'firebase/firestore' 
 import { getAuth, signInWithEmailAndPassword  } from "firebase/auth";
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
-import { AllProducts } from "../Products";
+import { AllProducts } from "../types/Products";
 
 
 const firebaseConfig = {
