@@ -46,13 +46,13 @@ function App() {
         <Route path="/delivery" element={<Delivery />} />
 
         <Route path="/admin" element={<Login />} />
-        {/* <Route element={<ProtectedRoutes />}> //private routes enabler */}
+        <Route element={<ProtectedRoutes />}> //private routes enabler
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/products" element={<AdminAllProducts />} />
           <Route path="/admin/orders" element={<Orders />} />
           <Route path="/admin/add" element={<AddProduct />} />
           <Route path="/admin/product/:id" element={<EditProduct />} />
-        {/* </Route> */}
+        </Route>
       <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
