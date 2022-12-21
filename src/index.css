@@ -40,5 +40,11 @@ select{
 .swiper-button-next,
 .swiper-button-prev{
   color:rgb(34 197 94) !important;
-  
+}
+
+input[type=file]{
+  /* width:10px; */
+  border:none;
+  color:transparent;
+  margin-bottom: 2em;
 }

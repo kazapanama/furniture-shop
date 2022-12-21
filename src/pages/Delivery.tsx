@@ -3,10 +3,10 @@ import ButtonRounded from '../components/atoms/ButtonRounded/ButtonRounded'
 
 const Delivery = () => {
     return ( 
-        <div>
+        <section>
             
-            <ButtonRounded text="Go to Home" onClick={()=>console.log('kek')}/>
-        </div>
+            <h1>Умови Доставки</h1>
+        </section>
      );
 }
  

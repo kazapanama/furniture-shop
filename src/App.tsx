@@ -21,6 +21,7 @@ import { useEffect } from 'react';
 import { fetchProducts } from './store/ProducsReducer';
 import { useAppDispatch } from './hooks/useStore';
 import NotFound from './pages/404';
+import SuccessOrder from './pages/SuccessOrder';
 
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
         <Route path="/products/:id" element={<Details />} />
         <Route path="/about" element={<About />} />
         <Route path="/delivery" element={<Delivery />} />
-
+        <Route path="/success" element={<SuccessOrder />} />
         <Route path="/admin" element={<Login />} />
         <Route element={<ProtectedRoutes />}> //private routes enabler
           <Route path="/admin/dashboard" element={<Dashboard />} />

@@ -191,7 +191,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
         </div>
 
 
-      {product.category==='sofa' && <ColorSection setColorOptions={setColorOptions} colorOptions={colorOptions}/>}  
+      <ColorSection setColorOptions={setColorOptions} colorOptions={colorOptions}/>
 
         <div className="flex flex-col ">
           <label className="text-left">Вибрати зображення</label>
@@ -214,7 +214,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
           <div className='w-full flex justify-center'>
 
-            <button type="submit" className="border mt-2 bg-green-500 rounded-full font-bold px-5 py-2 text-white">
+            <button type="submit" className="border mt-2 bg-green-500 rounded-full font-bold px-5 py-2 text-white mb-2">
               {toEdit ? 'Зберегти' : 'Додати'}
             </button>
           </div>

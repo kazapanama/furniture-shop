@@ -10,7 +10,7 @@ const ColorPreview: FC<ColorPreviewProps> = ({ colorOptions }) => {
   if (colorOptions.length === 0) return null;
 
   return (
-    <div className="w-full bg-slate-100 p-2 flex gap-5">
+    <div className="w-full bg-slate-500 p-2 flex gap-5 my-2 flex-wrap">
       {colorOptions.map((option, index) => (
         <div
           style={{ backgroundColor: ColorsDictionary[option.color][1] }}

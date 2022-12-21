@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import ButtonRounded from "../components/atoms/ButtonRounded/ButtonRounded";
 import CartItem from "../components/atoms/CartItem/CartItem";
 import { useAppDispatch, useAppSelector } from "../hooks/useStore";
@@ -6,11 +7,13 @@ import { resetToEmpty } from "../store/CartReducer";
 
 const Checkout = () => {
 
-    const dispatch = useAppDispatch()
 
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch()
     const handleCheckout = () => {
         console.log('Замовлення додано')
         dispatch(resetToEmpty())
+        navigate('/success')
     }
 
 

@@ -5,6 +5,7 @@ import Loader from "../../components/atoms/Loader/Loader";
 
 import SizesSection from "../../components/molecules/SizesSection/SizesSection";
 import { ColorsDictionary } from "../../dictionaries/Colors";
+import { deleteProduct } from "../../firebaseConfig/firebase";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
 
@@ -14,8 +15,8 @@ const Details = () => {
     const dispatch = useAppDispatch();
     const productsData = useAppSelector(state => state.products)
     const product = productsData.products.find(item => item.id === id)
-
-
+    const admin = useAppSelector(state => state.user).email
+    console.log(admin)
     const addToCart = () => {
         
         const cartItem = {
@@ -103,7 +104,15 @@ const Details = () => {
         </section>
 
         <section className="">
+            {admin ? 
+            <div>
+                {/* need propper handle delete */}
+                <ButtonRounded text='Delete' onClick={()=>deleteProduct(product.id)}/>
+                <Link to={'/admin/product/'+product.id}>EDIT</Link>
+            </div>
+
             
+            :null}
         </section>
 
 

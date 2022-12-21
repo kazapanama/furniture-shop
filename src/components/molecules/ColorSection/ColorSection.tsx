@@ -67,7 +67,7 @@ const ColorSection:FC<ColorSectionProps> = ({colorOptions,setColorOptions}) => {
                         <input type="number" className='w-16'
                         value={option.price||''} onChange={(e)=>handleNumberChange(e,index)}/>
                     </div>
-                    <button onClick={(e)=>deleteColor(e,index)} className='font-bold text-3xl'>X</button> 
+                    <button onClick={(e)=>deleteColor(e,index)} className='font-bold text-3xl  '>X</button> 
                 </div>
                 
             ))}
@@ -75,7 +75,7 @@ const ColorSection:FC<ColorSectionProps> = ({colorOptions,setColorOptions}) => {
 
        <ColorPreview colorOptions={colorOptions} />
 
-        <button onClick={(e)=>addNewColor(e)} className='border p-2'>Додати новий колір</button>
+        <button onClick={(e)=>addNewColor(e)} className=' p-2 border-dashed border-green-500 border-8 font-bold mb-2'>Додати новий колір</button>
       
       </>
 

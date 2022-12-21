@@ -14,8 +14,8 @@ const SizesSection:FC<SizesSectionProps> = ({width,height,length}) => {
     return ( 
         <div className=" flex justify-around py-2">
             {width ? <SizeDisplay parameter='Довжина' value={width} /> : null}
-            {length ? <SizeDisplay parameter='Довжина' value={length}/> :null}
-            {height ? <SizeDisplay parameter='Довжина' value={height}/> : null}
+            {length ? <SizeDisplay parameter='Ширина' value={length}/> :null}
+            {height ? <SizeDisplay parameter='Висота' value={height}/> : null}
 
         </div>
      );

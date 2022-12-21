@@ -103,6 +103,5 @@ export async function changeVisibility(product:AllProducts){
 
 export const deleteImage = async (url:string) => {
   const storageRef = ref(storage, url);
-  // console.log(storageRef);
   await deleteObject(storageRef);
 }
