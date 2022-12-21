@@ -10,28 +10,35 @@ interface Product {
     height?: number;
     length?: number;
     manufacturer?: string;
+    colors?: ColorVariant[];
 }
 
+export interface ColorVariant {
+    color: string;
+    price:number;
+}
+
+
+
 interface Sofa extends Product {
-    color?: string;
+    
 }
 
 interface Chair extends Product {
-    color?: string;
+
 }
 
 interface Bed extends Product {
-    color?: string;
+
     material?: string;
 }
 
 interface Closet extends Product {
-    color?: string;
+
     material?: string;
 }
 
 interface Bedding extends Product {
-
 }
 
 export type AllProducts = Sofa | Chair | Bed | Closet | Bedding;

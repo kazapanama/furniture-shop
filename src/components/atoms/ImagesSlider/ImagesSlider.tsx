@@ -41,10 +41,17 @@ const ImagesSlider:FC<ImagesSliderProps> = ({ images }) => {
   const [showFull, setShowFull] = useState<boolean>(false);
   const [currentFull,setCurrentFull] = useState<number>(0)
 
+
+  if (images.length === 0) {
+    return null
+  }
+
+
+
   return (
     <>
       <Swiper
-        className="smallSwiper aspect-square"
+        className="smallSwiper aspect-square md:w-4/6 lg:w-2/6"
         pagination={true}
         navigation={true}
         modules={[Pagination, Navigation]}
@@ -52,15 +59,18 @@ const ImagesSlider:FC<ImagesSliderProps> = ({ images }) => {
         {images && 
           images.map((image:string,i:number ) => (
             <SwiperSlide key={i}>
-              <img src={image} alt='Зображення квартири'
+              <img src={image} alt='Зображення товару'
               onClick={() => {
             setShowFull(true)
             
             setCurrentFull(i)
               }} 
-              className='w-full object-cover'/>
+              className='w-full object-cover '/>
             </SwiperSlide>
           ))}
+
+
+
       </Swiper>
 
       <FullImg img={images} isActive={showFull} setShowFull={setShowFull} currentFull={currentFull}/>

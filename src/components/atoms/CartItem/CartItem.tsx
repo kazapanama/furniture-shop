@@ -28,21 +28,30 @@ const CartItem:FC<CartItemProps> = ({item}) => {
 
     return ( 
         <div className="flex w-full border p-2">
-            <img src={product.images[0]} alt={product.name} className='w-8 h-8 mr-2'/>
-            <div className="flex flex-col gap-3">
-                <span className="text-sm">{product.name}</span>
+            <img src={product.images[0]||'/placeholder.jpg'} alt={product.name} className='w-8 h-8 mr-2'/>
+            <div className="flex flex-col gap-3 w-full">
+                <span className="text-sm w-full">{product.name}</span>
                 
-                <div className="w-full flex gap-5 ">
-                    <span className="text-sm">{item.quantity}ШТ</span>
-                    <span><strong>{product.price*item.quantity}</strong>грн</span>
-                </div>
+            <div className="flex justify-between">
+                <div className="w-full flex gap-2 items-center">
+                        <button className="text-xl font-thin border w-5 h-5 flex justify-center items-center" onClick={handleRemove}>-</button>
+                        <span className="text-lg">{item.quantity}шт.</span>
+                        <button className="text-xl font-thin border w-5 h-5 flex justify-center items-center" onClick={handleAdd}>+</button>
+                        
+                    </div>
+
+                    <div className="flex gap-5">
+                        <span><strong>{product.price*item.quantity}</strong>грн</span>
+                    </div>
+            </div>
+
+               
+
+
 
             </div>
             
-            <div className="flex gap-5">
-                <button className="text-4xl font-bold" onClick={handleAdd}>+</button>
-                <button className="text-4xl font-bold" onClick={handleRemove}>-</button>
-            </div>
+            
         </div>        
 
      );

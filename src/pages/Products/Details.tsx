@@ -4,6 +4,7 @@ import ImagesSlider from "../../components/atoms/ImagesSlider/ImagesSlider";
 import Loader from "../../components/atoms/Loader/Loader";
 
 import SizesSection from "../../components/molecules/SizesSection/SizesSection";
+import { ColorsDictionary } from "../../dictionaries/Colors";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
 
@@ -62,10 +63,12 @@ const Details = () => {
 
                 </div>
 
-                <div className="flex gap-2">
-                    <span>Виробник:</span>
-                    <span><strong>{product?.manufacturer}</strong></span>
-                </div>
+               {
+                product.manufacturer && <div className="flex gap-2">
+                <span>Виробник:</span>
+                <span><strong>{product?.manufacturer}</strong></span>
+            </div>
+               } 
             </div>
 
 
@@ -74,6 +77,19 @@ const Details = () => {
        <div className="w-full flex justify-center">
            <ButtonRounded text='Додати в кошик' onClick={addToCart}/>
        </div>
+
+        
+        
+       {product.colors ? <div className="flex flex-col bg-slate-100 gap-3">
+
+            <span>Доступні кольори:</span> 
+            <div className="flex gap-3 pb-2">
+                {product.colors.map((option,index)=><div key={index} className='w-12 h-12 border' style={{backgroundColor:ColorsDictionary[option.color][1]}}></div>)} 
+            </div>
+            </div>            
+              : null}
+
+
 
 
 

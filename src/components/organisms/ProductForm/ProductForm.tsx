@@ -2,8 +2,9 @@
 import { FC, useEffect, useState } from 'react';
 import { addNewProduct, deleteImage, uploadFile } from '../../../firebaseConfig/firebase';
 import { useAppDispatch } from '../../../hooks/useStore';
-import { AllProducts } from '../../../types/Products';
+import { AllProducts, ColorVariant } from '../../../types/Products';
 import { addOne, updateOne } from '../../../store/ProducsReducer';
+import ColorSection from '../../molecules/ColorSection/ColorSection';
 
 interface ProductFormProps {
   toEdit?: AllProducts;
@@ -29,12 +30,18 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
   const [imgURLs, setImgURLs] = useState<string[]>(product.images);
   const [queForDelete, setQueForDelete] = useState<string[]>([])
 
+  const [colorOptions, setColorOptions] = useState<ColorVariant[]>([])
+
   const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     
     e.preventDefault();
-    const readyForUpload = { ...product, images: imgURLs };
+    const readyForUpload:AllProducts = { ...product, images: imgURLs ,};
+
+       if (colorOptions.length){
+        readyForUpload.colors = colorOptions as ColorVariant[];
+      }
 
     //upload to firebase
     addNewProduct(readyForUpload);
@@ -42,15 +49,20 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
     toEdit
       ? dispatch(updateOne(readyForUpload))
       : dispatch(addOne(readyForUpload));
-    //reset form
-    setProduct(item);
+    //reset form and setup for new product
+    setProduct({...item,id:String(Date.now())});
     alert(toEdit? 'Товар відредаговано' : 'Товар додано');
     //reset images
     setImgURLs([]);
+    //reset colors
+    setColorOptions([])
+    //delete images from firebase
     queForDelete.forEach(async(url)=>{
-      //delete images from firebase
       await deleteImage(url)
     })
+    
+
+    
   };
 
   useEffect(() => {
@@ -177,6 +189,9 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
             }
           />
         </div>
+
+
+      {product.category==='sofa' && <ColorSection setColorOptions={setColorOptions} colorOptions={colorOptions}/>}  
 
         <div className="flex flex-col ">
           <label className="text-left">Вибрати зображення</label>

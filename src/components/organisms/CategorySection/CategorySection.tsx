@@ -13,9 +13,6 @@ interface CategorySectionProps {
 
 const CategorySection:FC<CategorySectionProps> = ({title,items}) => {
 
-  //@ts-ignore
-  title * 10
-
 
   return ( 
         <section className="p-2 border flex flex-col ">
