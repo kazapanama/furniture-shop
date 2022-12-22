@@ -1,31 +1,41 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ButtonRounded from "../../components/atoms/ButtonRounded/ButtonRounded";
 import ImagesSlider from "../../components/atoms/ImagesSlider/ImagesSlider";
 import Loader from "../../components/atoms/Loader/Loader";
 import ClothOptionDetails from "../../components/molecules/ClothOptionsDetails/ClothOptionDetails";
-
 import SizesSection from "../../components/molecules/SizesSection/SizesSection";
 import { ColorsDictionary } from "../../dictionaries/Colors";
 import { deleteProduct } from "../../firebaseConfig/firebase";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
 import { deleteOne } from "../../store/ProducsReducer";
-import { ICartItem, ICartSubmit } from "../../types/Cart";
+import {ICartSubmit } from "../../types/Cart";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 
 const Details = () => {
     const {id} = useParams();
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const productsData = useAppSelector(state => state.products)
     const product = productsData.products.find(item => item.id === id)
     const admin = useAppSelector(state => state.user).email
 
     const [activeColor,setActiveColor] = useState(product?.colors ? product?.colors[0].color:'')
 
-    // const [clothOptions,setClothOptions] = useState()
 
+    useEffect(()=>{
+        //set first color as active if there are colors
+        if (!product) return
 
+        if (product.colors){
+            setActiveColor(product.colors[0].color)
+        }
+    },[product])
 
     const addToCart = () => {
         if (!product) return
@@ -38,7 +48,7 @@ const Details = () => {
         if (activeColor){
             cartItem.color = activeColor as string
         }
-
+        toast.success('Товар додано в кошик')
         dispatch(increaseByOne(cartItem))
     }
 
@@ -48,7 +58,12 @@ const Details = () => {
         if (confirm('Видалити товар?')){
             deleteProduct(product.id)
             dispatch(deleteOne(product.id))
+            toast.success('Товар видалено',{
+                onClose: () => navigate('/')
+            })
         }
+
+
     }
 
 

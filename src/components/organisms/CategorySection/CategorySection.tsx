@@ -16,7 +16,7 @@ const CategorySection:FC<CategorySectionProps> = ({title,items}) => {
 
   return ( 
         <section className="p-2 border flex flex-col ">
-            <h2 className="text-4xl font-bold my-5 ml-2">{title}</h2>
+            <h2 className="text-2xl my-5 ml-2">Новинки в категорії <strong>{title}</strong></h2>
    
         
 

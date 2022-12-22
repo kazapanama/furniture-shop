@@ -7,6 +7,11 @@ import { addOne, updateOne } from '../../../store/ProducsReducer';
 import ColorSection from '../../molecules/ColorSection/ColorSection';
 import ClothCategorySection from '../../molecules/ClothCategorySection/ClothCategorySection';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
+
 interface ProductFormProps {
   toEdit?: AllProducts;
 }
@@ -35,6 +40,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
   const [clothCategories,setClothCategories] = useState<ClothCategory[]>([])
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     
@@ -62,8 +68,14 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
       ? dispatch(updateOne(readyForUpload))
       : dispatch(addOne(readyForUpload));
     //reset form and setup for new product
+    
     setProduct({...item,id:String(Date.now())});
-    alert(toEdit? 'Товар відредаговано' : 'Товар додано');
+    //notification for user about success
+    const message = toEdit ? 'Товар відредаговано' : 'Товар додано';
+    toast.success(message,{
+      onClose:()=>navigate('/admin/dashboard')
+    })
+    
     //reset images
     setImgURLs([]);
     //reset colors
@@ -96,6 +108,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
   return (
     <section className="p-2 mb-5">
+      
       <h1 className="font-bold text-center text-2xl mb-2">
         {toEdit ? 'Редагування товару' : 'Новий товар'}
       </h1>

@@ -22,7 +22,7 @@ import { fetchProducts } from './store/ProducsReducer';
 import { useAppDispatch } from './hooks/useStore';
 import NotFound from './pages/404';
 import SuccessOrder from './pages/SuccessOrder';
-
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -38,6 +38,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />
@@ -56,6 +57,7 @@ function App() {
         </Route>
       <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer autoClose={3000} />
       <Footer />
     </div>
   );

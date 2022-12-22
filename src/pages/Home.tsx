@@ -24,7 +24,8 @@ const Home = () => {
     <main className="">
         {productsData.loading && <Loader />}
         {categories.map(category => {
-           const items =  products.filter(item => item.category === category)
+            //get last 7 items from each category
+           const items =  products.filter(item => item.category === category).slice(-7).reverse()
               return items.length>0 && <CategorySection title={CategoriesDictionary[category]} items={items} key={category}/>
         })}
 
