@@ -27,7 +27,7 @@ const Checkout = () => {
             <div className="flex flex-col gap-2 mb-2">
             
         {cart && cart.map(item=>(
-            <CartItem key={item.id} item={item}/>
+            <CartItem key={item.id+item.price+item?.color} item={item}/>
         ))}
 
             </div>

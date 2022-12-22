@@ -18,27 +18,37 @@ export interface ColorVariant {
     price:number;
 }
 
-
+export interface ClothCategory {
+    category: string;
+    price: number;
+}
 
 interface Sofa extends Product {
-    
+    category: "sofa";
+    clothCategories?: ClothCategory[];
 }
 
 interface Chair extends Product {
-
+    category: "chair";
 }
 
 interface Bed extends Product {
-
+    category: "bed";
     material?: string;
 }
 
 interface Closet extends Product {
-
+    category: "closet";
     material?: string;
 }
 
 interface Bedding extends Product {
+    category: "bedding";
 }
 
 export type AllProducts = Sofa | Chair | Bed | Closet | Bedding;
+
+export type ICategories = Extract<
+  AllProducts["category"],
+  
+>;

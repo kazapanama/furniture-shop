@@ -2,9 +2,10 @@
 import { FC, useEffect, useState } from 'react';
 import { addNewProduct, deleteImage, uploadFile } from '../../../firebaseConfig/firebase';
 import { useAppDispatch } from '../../../hooks/useStore';
-import { AllProducts, ColorVariant } from '../../../types/Products';
+import { AllProducts, ClothCategory, ColorVariant, ICategories, Sofa } from '../../../types/Products';
 import { addOne, updateOne } from '../../../store/ProducsReducer';
 import ColorSection from '../../molecules/ColorSection/ColorSection';
+import ClothCategorySection from '../../molecules/ClothCategorySection/ClothCategorySection';
 
 interface ProductFormProps {
   toEdit?: AllProducts;
@@ -31,17 +32,28 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
   const [queForDelete, setQueForDelete] = useState<string[]>([])
 
   const [colorOptions, setColorOptions] = useState<ColorVariant[]>([])
+  const [clothCategories,setClothCategories] = useState<ClothCategory[]>([])
 
   const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     
     e.preventDefault();
-    const readyForUpload:AllProducts = { ...product, images: imgURLs ,};
+    
+    
+     const readyForUpload:AllProducts = { ...product, images: imgURLs ,};
+ 
 
        if (colorOptions.length){
         readyForUpload.colors = colorOptions as ColorVariant[];
       }
+
+      if (clothCategories.length && readyForUpload.category ==='sofa'){
+        readyForUpload.clothCategories  = clothCategories as ClothCategory[];
+      }
+
+
+
 
     //upload to firebase
     addNewProduct(readyForUpload);
@@ -76,7 +88,6 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
   function handleX(image: string): void {
     setQueForDelete([...queForDelete, image])
-    console.log(setQueForDelete)
     //removes image from the form
     const newURLs = imgURLs.filter((url) => url !== image);
     //need to add deleting!!! from firebase
@@ -117,7 +128,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
             <label>Категорія</label>
             <select
               onChange={(e) =>
-                setProduct({ ...product, category: e.target.value })
+                setProduct({ ...product, category: e.target.value as AllProducts['category'] })
               }
               defaultValue={product.category}
             >
@@ -192,6 +203,8 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
 
       <ColorSection setColorOptions={setColorOptions} colorOptions={colorOptions}/>
+
+      {product.category === 'sofa' && <ClothCategorySection  clothCategories={clothCategories} setClothCategories={setClothCategories}/>}
 
         <div className="flex flex-col ">
           <label className="text-left">Вибрати зображення</label>

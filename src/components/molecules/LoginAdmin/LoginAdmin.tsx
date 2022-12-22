@@ -18,7 +18,6 @@ const LoginAdmin = () => {
        const admin = await signInAdmin({email, password});
        
        if (admin){
-        console.log(admin?.email)
         dispatch(loginUser(admin.email))
         navigate('/admin/dashboard')
        } else {

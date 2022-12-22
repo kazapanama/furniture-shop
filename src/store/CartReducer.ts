@@ -8,26 +8,34 @@ const CartSlice = createSlice({
   initialState,
   reducers: {
     increaseByOne: (state, action) => {
-      const item = state.find((item) => item.id === action.payload.id);
+      const item = state.find((item) => item.id === action.payload.id && item.color === action.payload.color && item.price === action.payload.price);
       
       if (item) {
-        item.quantity++;
+        item.quantity++ ;
       } else {
-        state.push({ id: action.payload.id, price:action.payload.price, quantity: 1 });
+        const {color} = action.payload;
+
+        const newItem = {
+          id: action.payload.id,
+          price: action.payload.price,
+          quantity: 1,
+          color,
+        }
+        state.push(newItem);
       }
       
       return state 
     },
     decreaseByOne: (state, action) => {
 
-      const item = state.find((item) => item.id === action.payload.id)!;
+      const item = state.find((item) => item.id === action.payload.id && item.color === action.payload?.color && item.price === action.payload.price)!;
       
 
       if (item.quantity>1) {
         item.quantity--;
       } else {
 
-        state = state.filter((item) => item.id !== action.payload.id);
+        state = state.filter((product) => product !== item);
       }
 
       return state 
