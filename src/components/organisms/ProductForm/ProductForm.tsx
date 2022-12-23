@@ -10,6 +10,7 @@ import ClothCategorySection from '../../molecules/ClothCategorySection/ClothCate
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import ButtonRounded from '../../atoms/ButtonRounded/ButtonRounded';
 
 
 interface ProductFormProps {
@@ -36,8 +37,24 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
   const [imgURLs, setImgURLs] = useState<string[]>(product.images);
   const [queForDelete, setQueForDelete] = useState<string[]>([])
 
-  const [colorOptions, setColorOptions] = useState<ColorVariant[]>([])
+  const [colorOptions, setColorOptions] = useState<ColorVariant[]>(product.colors||[])
   const [clothCategories,setClothCategories] = useState<ClothCategory[]>([])
+
+
+
+  useEffect(()=>{
+    if (toEdit){
+      setProduct(toEdit)
+    }
+  },[toEdit])
+
+
+  useEffect(()=>{
+    if (product.category === 'sofa'){
+      setClothCategories(product.clothCategories as ClothCategory[]||[])
+    }
+  },[])
+
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -239,10 +256,9 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
             </div>
 
           <div className='w-full flex justify-center'>
-
-            <button type="submit" className="border mt-2 bg-green-500 rounded-full font-bold px-5 py-2 text-white mb-2">
-              {toEdit ? 'Зберегти' : 'Додати'}
-            </button>
+          
+          <ButtonRounded text={toEdit ? 'Зберегти' : 'Додати'}/>
+          
           </div>
       </form>
     </section>

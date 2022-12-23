@@ -48,3 +48,9 @@ input[type=file]{
   color:transparent;
   margin-bottom: 2em;
 }
+
+
+
+.Toastify__progress-bar--success {
+  background: #4fd1c5;
+}
