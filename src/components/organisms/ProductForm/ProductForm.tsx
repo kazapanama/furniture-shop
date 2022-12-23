@@ -43,6 +43,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
 
   useEffect(()=>{
+    //needed if edit page was refreshed
     if (toEdit){
       setProduct(toEdit)
     }
@@ -50,6 +51,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
 
   useEffect(()=>{
+    //sets cloth categories if product is sofa
     if (product.category === 'sofa'){
       setClothCategories(product.clothCategories as ClothCategory[]||[])
     }
