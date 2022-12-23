@@ -13,13 +13,14 @@ const CartSlice = createSlice({
       if (item) {
         item.quantity++ ;
       } else {
-        const {color} = action.payload;
+        const {color,clothCategory} = action.payload;
 
         const newItem = {
           id: action.payload.id,
           price: action.payload.price,
           quantity: 1,
           color,
+          clothCategory
         }
         state.push(newItem);
       }

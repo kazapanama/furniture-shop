@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
 import { deleteOne } from "../../store/ProducsReducer";
 import {ICartSubmit } from "../../types/Cart";
-import { ToastContainer, toast } from 'react-toastify';
+import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -25,7 +25,25 @@ const Details = () => {
     const product = productsData.products.find(item => item.id === id)
     const admin = useAppSelector(state => state.user).email
 
+    const [basePrice,setBasePrice] = useState(product && product.price ? product.price : 0)
+    const [activeClothCategory,setActiveClothCategory] = useState('')
     const [activeColor,setActiveColor] = useState(product?.colors ? product?.colors[0].color:'')
+
+
+
+
+    useEffect(()=>{
+        if (!product) return
+
+        if (product?.category === 'sofa'){
+            if (product?.clothCategories){
+                setActiveClothCategory(product?.clothCategories?.[0].category)
+            }
+            
+        }
+    },[product])
+
+
 
 
     useEffect(()=>{
@@ -35,6 +53,9 @@ const Details = () => {
         if (product.colors){
             setActiveColor(product.colors[0].color)
         }
+        //re-set base price if page is refreshed
+        setBasePrice(product.price)
+
     },[product])
 
     const addToCart = () => {
@@ -42,12 +63,18 @@ const Details = () => {
 
         const cartItem:ICartSubmit = {
             id: product.id,
-            price: product.price
+            price: basePrice
         }
 
         if (activeColor){
-            cartItem.color = activeColor as string
+            cartItem.color = activeColor 
         }
+
+
+        if (activeClothCategory){
+            cartItem.clothCategory = activeClothCategory 
+        }
+        console.log(cartItem)
         toast.success('Товар додано в кошик')
         dispatch(increaseByOne(cartItem))
     }
@@ -102,7 +129,7 @@ const Details = () => {
             <div className="flex gap-3">
                 <div className="flex gap-2">
                     <span>Ціна:</span> 
-                    <span><strong className="mr-1">{product.price}</strong>грн</span>
+                    <span><strong className="mr-1">{basePrice}</strong>грн</span>
 
                 </div>
 
@@ -137,7 +164,7 @@ const Details = () => {
               : null}
 
 
-        {product.category === 'sofa' && product.clothCategories ? <ClothOptionDetails clothCategories={product.clothCategories}/> : null}
+        {product.category === 'sofa' && product.clothCategories ? <ClothOptionDetails clothCategories={product.clothCategories} setBasePrice={setBasePrice} setActiveClothCategory={setActiveClothCategory}/> : null}
 
 
 

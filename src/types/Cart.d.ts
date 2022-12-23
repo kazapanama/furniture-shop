@@ -3,6 +3,7 @@ export interface ICartItem {
     price: number;
     quantity: number;
     color?: string;
+    clothCategory?:string
 }
 
 export interface ICartSubmit{

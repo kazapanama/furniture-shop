@@ -7,6 +7,7 @@ const Header = () => {
   return (
     <nav className="w-full bg-teal-400 sticky top-0 z-30 flex justify-between p-2">
       <Link to="/" className="flex items-center text-2xl font-bold text-white">
+        <img src="/ico/192.png" alt="logo" className='w-10 h-10 mr-2'/>
         Ваші меблі
       </Link>
       

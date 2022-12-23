@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/useStore';
 import { ICartItem } from '../../../types/Cart';
 import { decreaseByOne, increaseByOne } from '../../../store/CartReducer';
 import { ColorsDictionary } from '../../../dictionaries/Colors';
+import { ClothCategoriesDictionary } from '../../../dictionaries/ClothCategories';
 
 interface CartItemProps {
   item: ICartItem;
@@ -17,13 +18,13 @@ const CartItem: FC<CartItemProps> = ({ item }) => {
 
   const handleAdd = () => {
     const { color } = item;
-    const newItem = { id: product.id, price: product.price, color };
+    const newItem = { id: product.id, price: item.price, color };
     dispatch(increaseByOne(newItem));
   };
 
   const handleRemove = () => {
     const { color } = item;
-    const newItem = { id: product.id, price: product.price, color };
+    const newItem = { id: product.id, price: item.price, color };
     dispatch(decreaseByOne(newItem));
   };
 
@@ -39,7 +40,7 @@ const CartItem: FC<CartItemProps> = ({ item }) => {
 
         <div className="flex justify-between">
           <div>
-            <div className="w-full flex gap-2 items-center">
+            <div className="w-full flex gap-2 items-center mb-2">
               <button
                 className="text-xl font-thin border w-5 h-5 flex justify-center items-center"
                 onClick={handleRemove}
@@ -54,10 +55,15 @@ const CartItem: FC<CartItemProps> = ({ item }) => {
                 +
               </button>
             </div>
-            <div>
+            <div className='flex flex-col'>
               {item.color && (
                 <span className="text-sm ml-2">
-                  Колір: {ColorsDictionary[item.color][0]}
+                  Колір: <strong>{ColorsDictionary[item.color][0]}</strong>
+                </span>
+              )}
+              {item.clothCategory && (
+                <span className="text-sm ml-2">
+                  Тканина: <strong>{ClothCategoriesDictionary[item.clothCategory].slice(0,12)}</strong>
                 </span>
               )}
             </div>
@@ -65,7 +71,7 @@ const CartItem: FC<CartItemProps> = ({ item }) => {
 
           <div className="flex gap-5">
             <span>
-              <strong>{product.price * item.quantity}</strong>грн
+              <strong>{item.price * item.quantity}</strong>грн
             </span>
           </div>
         </div>
