@@ -71,15 +71,22 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
        if (colorOptions.length){
         readyForUpload.colors = colorOptions as ColorVariant[];
+      } else if (readyForUpload.colors) {
+        delete readyForUpload.colors
       }
 
-      if (clothCategories.length && readyForUpload.category ==='sofa'){
-        readyForUpload.clothCategories  = clothCategories as ClothCategory[];
+      if (readyForUpload.category === 'sofa') {
+        if (clothCategories.length) {
+          readyForUpload.clothCategories = clothCategories as ClothCategory[];
+        } else {
+          delete readyForUpload.clothCategories;
+        }
       }
 
 
 
-
+      console.log(product)
+      console.log(readyForUpload)
     //upload to firebase
     addNewProduct(readyForUpload);
     //add to redux store
@@ -91,9 +98,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
     setProduct({...item,id:String(Date.now())});
     //notification for user about success
     const message = toEdit ? 'Товар відредаговано' : 'Товар додано';
-    toast.success(message,{
-      onClose:()=>navigate('/admin/dashboard')
-    })
+    toast.success(message)
     
     //reset images
     setImgURLs([]);

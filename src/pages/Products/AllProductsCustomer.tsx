@@ -53,7 +53,7 @@ const  AllProductsCustomer = () => {
             
             {products.length === 0 && <p>Немає продуктів за даними критеріями</p>}
             
-            <div className="">
+            <div className="flex flex-wrap gap-5 justify-center mt-4">
                 {products.length>0 && products.map(item => (
                     <ProductCard item={item} key={item.id} />
                 ))}

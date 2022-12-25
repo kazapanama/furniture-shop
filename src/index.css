@@ -33,13 +33,13 @@ select{
 
 
 .swiper-pagination-bullet-active {
-  background-color: rgb(34 197 94) !important
+  background-color: #4fd1c5 !important
 }
 
 
 .swiper-button-next,
 .swiper-button-prev{
-  color:rgb(34 197 94) !important;
+  color:#4fd1c5 !important;
 }
 
 input[type=file]{

@@ -32,18 +32,6 @@ const Details = () => {
 
 
 
-    useEffect(()=>{
-        if (!product) return
-
-        if (product?.category === 'sofa'){
-            if (product?.clothCategories){
-                setActiveClothCategory(product?.clothCategories?.[0].category)
-            }
-            
-        }
-    },[product])
-
-
 
 
     useEffect(()=>{
@@ -55,6 +43,18 @@ const Details = () => {
         }
         //re-set base price if page is refreshed
         setBasePrice(product.price)
+
+
+        //re-set cloth category and price for sofas with them
+        if (product?.category === 'sofa'){
+            if (product?.clothCategories){
+                setActiveClothCategory(product?.clothCategories?.[0].category)
+                setBasePrice(product.clothCategories[0].price)
+            }
+            
+        }
+
+
 
     },[product])
 
@@ -126,6 +126,11 @@ const Details = () => {
             <h1 className="font-bold text-xl">{product.name}</h1>
 
 
+            <div className="flex gap-2">
+                <p className="text-sm">{product?.description}</p>
+            </div>
+
+
             <div className="flex gap-3">
                 <div className="flex gap-2">
                     <span>Ціна:</span> 
@@ -144,9 +149,7 @@ const Details = () => {
 
        <SizesSection width={product.width} length={product.length} height={product.height}/>
 
-       <div className="w-full flex justify-center">
-           <ButtonRounded text='Додати в кошик' onClick={addToCart}/>
-       </div>
+       
 
         
         
@@ -167,10 +170,10 @@ const Details = () => {
         {product.category === 'sofa' && product.clothCategories ? <ClothOptionDetails clothCategories={product.clothCategories} setBasePrice={setBasePrice} setActiveClothCategory={setActiveClothCategory}/> : null}
 
 
-
-            <div className="flex gap-2">
-                <p className="text-sm">{product?.description}</p>
-            </div>
+        <div className="w-full flex justify-center">
+           <ButtonRounded text='Додати в кошик' onClick={addToCart}/>
+       </div>
+            
                 
           
 
