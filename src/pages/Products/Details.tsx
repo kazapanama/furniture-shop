@@ -6,13 +6,14 @@ import Loader from "../../components/atoms/Loader/Loader";
 import ClothOptionDetails from "../../components/molecules/ClothOptionsDetails/ClothOptionDetails";
 import SizesSection from "../../components/molecules/SizesSection/SizesSection";
 import { ColorsDictionary } from "../../dictionaries/Colors";
-import { deleteProduct } from "../../firebaseConfig/firebase";
+import { deleteImage, deleteProduct } from "../../firebaseConfig/firebase";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { increaseByOne } from "../../store/CartReducer";
 import { deleteOne } from "../../store/ProducsReducer";
 import {ICartSubmit } from "../../types/Cart";
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LinkRounded from "../../components/atoms/LinkRounded/LinkRounded";
 
 
 
@@ -83,8 +84,15 @@ const Details = () => {
         if (!product) return
 
         if (confirm('Видалити товар?')){
+            //deleting product from db
             deleteProduct(product.id)
+            //removing product from store
             dispatch(deleteOne(product.id))
+            //deleting images from storage
+            product.images.forEach(async(url)=>{
+                await deleteImage(url)
+              })
+            
             toast.success('Товар видалено',{
                 onClose: () => navigate('/')
             })
@@ -179,12 +187,12 @@ const Details = () => {
 
         </section>
 
-        <section className="">
+        <section className="mb-5">
             {admin ? 
             <div className="w-full flex justify-center items-center gap-5">
 
-                <ButtonRounded text='Delete' onClick={()=>deleteIfAdmin()}/>
-                <Link to={'/admin/product/'+product.id}>EDIT</Link>
+                <LinkRounded text='Редагувати' to={'/admin/product/'+product.id} color='bg-green-400'/>
+                <ButtonRounded text='Видалити' onClick={()=>deleteIfAdmin()} color='bg-red-400'/>
             </div>
 
             

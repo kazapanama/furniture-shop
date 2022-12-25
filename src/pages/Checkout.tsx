@@ -35,7 +35,7 @@ const Checkout = () => {
             <div className="flex flex-col gap-5">
                <span>Всього до оплати: <strong>{cart.reduce((acc:number, item) => acc += item.quantity * item.price, 0)}</strong> грн</span>
               
-                <ButtonRounded text='Оформити замовлення' onClick={handleCheckout}/>
+                <ButtonRounded text='Оформити замовлення' onClick={handleCheckout} color='bg-teal-400'/>
             </div>
 
         </section>

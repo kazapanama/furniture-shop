@@ -1,6 +1,7 @@
 import { FC, MouseEvent } from "react";
 import { ClothCategoriesDictionary } from "../../../dictionaries/ClothCategories";
 import { ClothCategory } from "../../../types/Products";
+import ButtonRounded from "../../atoms/ButtonRounded/ButtonRounded";
 
 interface ClothCategorySectionProps {
     clothCategories: ClothCategory[];
@@ -52,9 +53,9 @@ const ClothCategorySection:FC<ClothCategorySectionProps> = ({clothCategories,set
         <section className="flex flex-col gap-3">
 
             {clothCategories.map((category,index) => (
-                <div key={index} className="flex flex-col gap-2">
+                <div key={index} className="flex flex-col gap-2 p-2 bg-blue-100">
                     <div className="flex flex-col">
-                        <label>Категорія</label>
+                        <label>Категорія:</label>
                         <select onChange={(e)=>handleSelect(e,index)} value={category.category}>
                             {Object.keys(ClothCategoriesDictionary).map((key) => (
                                 <option key={key} value={key}>{ClothCategoriesDictionary[key]}</option>
@@ -64,7 +65,7 @@ const ClothCategorySection:FC<ClothCategorySectionProps> = ({clothCategories,set
 
 
                     <div className="flex flex-col">
-                        <label>Ціна</label>
+                        <label>Ціна:</label>
                         <input type="number" value={category.price||''} onChange={(e) => handleNumberChange(e,index)}/>
                     </div>
 
@@ -75,9 +76,7 @@ const ClothCategorySection:FC<ClothCategorySectionProps> = ({clothCategories,set
             ))}
 
 
-
-            <button className="bg-slate-500"
-            onClick={(e)=>addClothCategory(e)}>ADD CLOTH CATEGORY</button>
+            <ButtonRounded text='Додати категорію тканини' onClick={(e)=>addClothCategory(e)} color='bg-blue-400' />
         </section>
 
 

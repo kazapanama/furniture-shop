@@ -2,14 +2,13 @@
 import { FC, useEffect, useState } from 'react';
 import { addNewProduct, deleteImage, uploadFile } from '../../../firebaseConfig/firebase';
 import { useAppDispatch } from '../../../hooks/useStore';
-import { AllProducts, ClothCategory, ColorVariant, ICategories, Sofa } from '../../../types/Products';
+import { AllProducts, ClothCategory, ColorVariant} from '../../../types/Products';
 import { addOne, updateOne } from '../../../store/ProducsReducer';
 import ColorSection from '../../molecules/ColorSection/ColorSection';
 import ClothCategorySection from '../../molecules/ClothCategorySection/ClothCategorySection';
 
-import { ToastContainer, toast } from 'react-toastify';
+import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
 import ButtonRounded from '../../atoms/ButtonRounded/ButtonRounded';
 
 
@@ -59,7 +58,6 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     
@@ -83,10 +81,6 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
         }
       }
 
-
-
-      console.log(product)
-      console.log(readyForUpload)
     //upload to firebase
     addNewProduct(readyForUpload);
     //add to redux store
@@ -122,7 +116,8 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
     }
   }, [images]);
 
-  function handleX(image: string): void {
+  function handleX(e:React.MouseEvent<HTMLButtonElement, MouseEvent>,image: string): void {
+    e.preventDefault();
     setQueForDelete([...queForDelete, image])
     //removes image from the form
     const newURLs = imgURLs.filter((url) => url !== image);
@@ -255,16 +250,16 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
             <div className='flex gap-3 flex-wrap mb-2'>
               {imgURLs.map((image) => (
-                <div className="flex  gap-2 " key={image}>
+                <div className="flex  gap-2 border p-2" key={image}>
                   <img src={image} className="w-12 h-12 cover" />
-                  <button onClick={() => handleX(image)} className='font-bold text-2xl'>X</button>
+                  <button onClick={(e) => handleX(e,image)} className='font-bold text-2xl'>X</button>
                 </div>
               ))}
             </div>
 
           <div className='w-full flex justify-center'>
           
-          <ButtonRounded text={toEdit ? 'Зберегти' : 'Додати'}/>
+          <ButtonRounded text={toEdit ? 'Зберегти зміни' : 'Додати товар'} color='bg-green-400'/>
           
           </div>
       </form>

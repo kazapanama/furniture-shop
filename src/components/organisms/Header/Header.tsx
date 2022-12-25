@@ -55,7 +55,7 @@ const OpenedMenu:FC<OpenedMenuProps> = ({isOpen,setIsOpen}) => {
     </div>
 
 
-    <div className='w-full flex flex-col items-end mr-8'>
+    <div className='w-full flex flex-col items-end mr-8 md:items-center'>
       <span className='text-white text-2xl font-thin'>Контактний телефон</span>
       <a href='tel:+380-99-360-6003' className='text-white text-3xl font-bold'>067 929 60 03</a>
     </div>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {signInAdmin} from '../../../firebaseConfig/firebase'
 import { useAppDispatch } from '../../../hooks/useStore';
 import { loginUser } from '../../../store/UserReducer';
+import ButtonRounded from '../../atoms/ButtonRounded/ButtonRounded';
 
 const LoginAdmin = () => {
     
@@ -23,15 +24,12 @@ const LoginAdmin = () => {
        } else {
               setError(true)
        }
-       
-       
-       
     }
     
     
     return ( 
         <section className='flex flex-col items-center'>
-            <form onSubmit={(e)=>handleLogin(e)} className='w-4/6'>
+            <form onSubmit={(e)=>handleLogin(e)} className='w-3/6 flex flex-col gap-5 justify-center'>
                 <div className='flex flex-col'>
                     <label >Email:</label>
                     <input type="text" value={email} onChange={(e)=>{
@@ -47,9 +45,9 @@ const LoginAdmin = () => {
                     error ? setError(false) : null
                     }}/>
                 </div>
-                <button type='submit'>LOGIN</button>
+                <ButtonRounded text='LOGIN' color='bg-teal-400'/>
             </form>
-            {error && <span className='text-red-800'>error</span>}
+            {error && <span className='text-red-800'>Невірний логін або пароль</span>}
         </section>
      );
 }

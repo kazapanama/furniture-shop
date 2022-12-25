@@ -2,6 +2,7 @@ import {FC} from 'react'
 import { ColorVariant } from '../../../types/Products';
 import { ColorsDictionary } from '../../../dictionaries/Colors';
 import ColorPreview from '../../atoms/ColorPreview/ColorPreview';
+import ButtonRounded from '../../atoms/ButtonRounded/ButtonRounded';
 
 interface ColorSectionProps {
     setColorOptions: (obj: ColorVariant[]) => void;
@@ -46,9 +47,9 @@ const ColorSection:FC<ColorSectionProps> = ({colorOptions,setColorOptions}) => {
       <>
         <div className='flex flex-wrap gap-3 '>
             {colorOptions.map((option, index) => (
-                <div className='flex gap-3 items-center border' key={index}>
+                <div className='bg-yellow-100 flex gap-3 items-center border p-2' key={index}>
                     <div className='flex flex-col'>
-                        <label>Назва кольору</label>
+                        <label>Назва кольору:</label>
                         <select onChange={(e)=>handleColorChange(e,index)}>
 
                             {Object.keys(ColorsDictionary).map((color) => (
@@ -63,7 +64,7 @@ const ColorSection:FC<ColorSectionProps> = ({colorOptions,setColorOptions}) => {
 
                     </div>
                     <div className='flex flex-col'>
-                        <label>Ціна</label>
+                        <label>Ціна:</label>
                         <input type="number" className='w-16'
                         value={option.price||''} onChange={(e)=>handleNumberChange(e,index)}/>
                     </div>
@@ -75,7 +76,8 @@ const ColorSection:FC<ColorSectionProps> = ({colorOptions,setColorOptions}) => {
 
        <ColorPreview colorOptions={colorOptions} />
 
-        <button onClick={(e)=>addNewColor(e)} className=' p-2 border-dashed border-green-500 border-8 font-bold mb-2'>Додати новий колір</button>
+        <ButtonRounded text='Додати новий колір' onClick={(e)=>addNewColor(e)} color='bg-yellow-400'/>
+        
       
       </>
 

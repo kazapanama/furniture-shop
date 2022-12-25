@@ -20,15 +20,18 @@
 /* temporary for styling */
 
 input{
-  border:1px solid black;
+  border:1px solid #292929;
+  padding: 2px;
 }
 
 textarea{
-  border:1px solid black;
+  border:1px solid #292929;
+  padding: 2px;
 }
 
 select{
-  border:1px solid blue;
+  border:1px solid#292929;
+  padding: 2px;
 }
 
 
