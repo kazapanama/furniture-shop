@@ -23,6 +23,13 @@ export interface ClothCategory {
     price: number;
 }
 
+export interface AdditionalSize{
+    width?: number;
+    height?: number;
+    length?: number;
+    price?: number;
+}
+
 interface Sofa extends Product {
     category: "sofa";
     clothCategories?: ClothCategory[];
@@ -44,6 +51,7 @@ interface Closet extends Product {
 
 interface Bedding extends Product {
     category: "bedding";
+    additionalSizes?: AdditionalSize[];
 }
 
 export type AllProducts = Sofa | Chair | Bed | Closet | Bedding;

@@ -4,6 +4,7 @@ export interface ICartItem {
     quantity: number;
     color?: string;
     clothCategory?:string
+    dimensions?:{width?:number,height?:number,length?:number}
 }
 
 export interface ICartSubmit{
@@ -11,4 +12,5 @@ export interface ICartSubmit{
     price:number
     color?:string
     clothCategory?:string
+    dimensions?:{width?:number,height?:number,length?:number}
 }

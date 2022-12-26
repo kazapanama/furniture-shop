@@ -14,6 +14,7 @@ import {ICartSubmit } from "../../types/Cart";
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LinkRounded from "../../components/atoms/LinkRounded/LinkRounded";
+import AdditionalSizesDetails from "../../components/molecules/AdditionalSizesDetails/AdditionalSizesDetails";
 
 
 
@@ -30,6 +31,11 @@ const Details = () => {
     const [activeClothCategory,setActiveClothCategory] = useState('')
     const [activeColor,setActiveColor] = useState(product?.colors ? product?.colors[0].color:'')
 
+    const [activeDimesions,setActiveDimensions] = useState<{width:number,length:number}>({
+        width: product?.width ? product?.width : 0,
+        length: product?.length ? product?.length : 0
+    })
+
 
 
 
@@ -38,6 +44,15 @@ const Details = () => {
     useEffect(()=>{
         //set first color as active if there are colors
         if (!product) return
+
+
+        if (product.width){
+            setActiveDimensions({...activeDimesions,width:product.width})
+        }
+
+        if (product.length){
+            setActiveDimensions({...activeDimesions,length:product.length})
+        }
 
         if (product.colors){
             setActiveColor(product.colors[0].color)
@@ -71,6 +86,10 @@ const Details = () => {
             cartItem.color = activeColor 
         }
 
+        if (Object.keys(activeDimesions).length){
+            cartItem.dimensions = {...activeDimesions} 
+        }
+
 
         if (activeClothCategory){
             cartItem.clothCategory = activeClothCategory 
@@ -101,7 +120,15 @@ const Details = () => {
 
     }
 
+    const resetPriceAndDimensions = () => {
+        if (!product) return
 
+        setBasePrice(product.price)
+        setActiveDimensions({
+            width: product.width||0,
+            length: product.length||0
+        })
+    }
 
     if (productsData.loading){
         return (
@@ -155,7 +182,7 @@ const Details = () => {
             </div>
 
 
-       <SizesSection width={product.width} length={product.length} height={product.height}/>
+       <SizesSection width={activeDimesions.width} length={activeDimesions.length} height={product.height}/>
 
        
 
@@ -176,7 +203,7 @@ const Details = () => {
 
 
         {product.category === 'sofa' && product.clothCategories ? <ClothOptionDetails clothCategories={product.clothCategories} setBasePrice={setBasePrice} setActiveClothCategory={setActiveClothCategory}/> : null}
-
+        {product.category === 'bedding' && product.additionalSizes ? <AdditionalSizesDetails additionalSizes={product.additionalSizes} resetPriceAndDimensions={resetPriceAndDimensions} setBasePrice={setBasePrice} activeDimesions={activeDimesions} setActiveDimensions={setActiveDimensions}/>:null}
 
         <div className="w-full flex justify-center">
            <ButtonRounded text='Додати в кошик' onClick={addToCart}/>

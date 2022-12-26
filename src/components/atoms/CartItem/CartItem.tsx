@@ -66,6 +66,11 @@ const CartItem: FC<CartItemProps> = ({ item }) => {
                   Тканина: <strong>{ClothCategoriesDictionary[item.clothCategory].slice(0,12)}</strong>
                 </span>
               )}
+              {item.dimensions && (
+                <span className="text-sm ml-2">
+                  Розмір: <strong>{`${item.dimensions.width}x${item.dimensions.length}`}</strong>
+                </span>
+              )}
             </div>
           </div>
 

@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import { addNewProduct, deleteImage, uploadFile } from '../../../firebaseConfig/firebase';
 import { useAppDispatch } from '../../../hooks/useStore';
-import { AllProducts, ClothCategory, ColorVariant} from '../../../types/Products';
+import { AdditionalSize, AllProducts, ClothCategory, ColorVariant} from '../../../types/Products';
 import { addOne, updateOne } from '../../../store/ProducsReducer';
 import ColorSection from '../../molecules/ColorSection/ColorSection';
 import ClothCategorySection from '../../molecules/ClothCategorySection/ClothCategorySection';
@@ -10,6 +10,7 @@ import ClothCategorySection from '../../molecules/ClothCategorySection/ClothCate
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ButtonRounded from '../../atoms/ButtonRounded/ButtonRounded';
+import AdditionalSizesSection from '../../molecules/AdditionalSizesSection/AdditionalSizesSection';
 
 
 interface ProductFormProps {
@@ -38,7 +39,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
 
   const [colorOptions, setColorOptions] = useState<ColorVariant[]>(product.colors||[])
   const [clothCategories,setClothCategories] = useState<ClothCategory[]>([])
-
+  const [additionalSizes,setAdditionalSizes] = useState<AdditionalSize[]>([])
 
 
   useEffect(()=>{
@@ -54,6 +55,12 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
     if (product.category === 'sofa'){
       setClothCategories(product.clothCategories as ClothCategory[]||[])
     }
+    
+    //sets additional sizes if product is bedding
+    if (product.category === 'bedding'){
+      setAdditionalSizes(product.additionalSizes as AdditionalSize[]||[])
+    }
+
   },[])
 
 
@@ -78,6 +85,14 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
           readyForUpload.clothCategories = clothCategories as ClothCategory[];
         } else {
           delete readyForUpload.clothCategories;
+        }
+      }
+
+      if (readyForUpload.category === 'bedding') {
+        if (additionalSizes.length) {
+          readyForUpload.additionalSizes = additionalSizes as AdditionalSize[];
+        } else {
+          delete readyForUpload.additionalSizes;
         }
       }
 
@@ -237,6 +252,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
       <ColorSection setColorOptions={setColorOptions} colorOptions={colorOptions}/>
 
       {product.category === 'sofa' && <ClothCategorySection  clothCategories={clothCategories} setClothCategories={setClothCategories}/>}
+      {product.category === 'bedding' && <AdditionalSizesSection setAdditionalSizes={setAdditionalSizes} additionalSizes={additionalSizes}/>}
 
         <div className="flex flex-col ">
           <label className="text-left">Вибрати зображення</label>
