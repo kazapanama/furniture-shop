@@ -3,17 +3,26 @@ import { CategoriesDictionary } from "../../../dictionaries/Categories";
 
 interface FilerProps {
     setIsOpen:(a:boolean)=>void
+    filteredCategories: string[];
+    setFilteredCategories: (categories: string[]) => void;
 }
 
 
 
 
-const Filters:FC<FilerProps> = ({setIsOpen}) => {
+const Filters:FC<FilerProps> = ({setIsOpen,filteredCategories,setFilteredCategories}) => {
 
     const categories = Object.keys(CategoriesDictionary);
 
 
+    const handleCategoryClick = (category: string) => {
 
+        if (filteredCategories.includes(category)) {
+            setFilteredCategories(filteredCategories.filter(item => item !== category))
+        } else {
+            setFilteredCategories([...filteredCategories, category])
+        }
+    }
 
     return ( 
         <div className="bg-white w-screen h-screen fixed top-0 left-0 z-50 flex flex-col p-5">
@@ -25,7 +34,10 @@ const Filters:FC<FilerProps> = ({setIsOpen}) => {
             <div className="w-full flex flex-wrap gap-5 justify-center">
                 { categories.map(item => (
                         <button key={item}
-                        className='p-2 border rounded-full border-slate-500'>{CategoriesDictionary[item]}</button>
+                        className={filteredCategories.includes(item) ? 'p-2 border rounded-full border-slate-500':'p-2 border rounded-full text-white font-bold border-slate-500 bg-teal-400'}
+                        onClick={()=>handleCategoryClick(item)}
+                        >
+                            {CategoriesDictionary[item]}</button>
                 ))}
             </div>
               

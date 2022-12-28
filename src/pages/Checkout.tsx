@@ -39,7 +39,7 @@ const Checkout = () => {
 
         message = message.replace(/\n/g, '%0A')
         
-        fetch(`https://api.telegram.org/bot5987449916:AAERrXeQsl2RnB8ND8Mz4z5h3umUGK_rU98/sendMessage?chat_id=${import.meta.env.VITE_TELEGRAM_CHAT_ID}&text=${message}`)
+        fetch(`https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${import.meta.env.VITE_TELEGRAM_CHAT_ID}&text=${message}`)
         dispatch(resetToEmpty())
         navigate('/success')
     }

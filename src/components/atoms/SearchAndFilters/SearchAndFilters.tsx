@@ -4,11 +4,13 @@ import { FC, useState } from "react";
 
 interface SearchAndFiltersProps {
     setFilterText: (text: string) => void;
+    filteredCategories: string[];
+    setFilteredCategories: (categories: string[]) => void;
 }
 
 
 
-const SearchAndFilters:FC<SearchAndFiltersProps> = ({setFilterText}) => {
+const SearchAndFilters:FC<SearchAndFiltersProps> = ({setFilterText,filteredCategories,setFilteredCategories}) => {
     
 
     const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +30,7 @@ const SearchAndFilters:FC<SearchAndFiltersProps> = ({setFilterText}) => {
                 </div>
             </div>
 
-            {isOpen && < Filters setIsOpen={setIsOpen}/>}
+            {isOpen && < Filters setIsOpen={setIsOpen} filteredCategories={filteredCategories} setFilteredCategories={setFilteredCategories}/>}
         </>
     
 

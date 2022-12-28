@@ -23,7 +23,7 @@ const productsRef = collection(db, 'products');
 
 export async function getProducts():Promise<AllProducts[]> {
     const productsSnapshot = await getDocs(productsRef);
-    const List = productsSnapshot.docs.map(doc => doc.data());
+    const List = productsSnapshot.docs.map(doc => doc.data()).reverse();
     return List as AllProducts[];
   }
 
