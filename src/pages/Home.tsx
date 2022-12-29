@@ -15,7 +15,7 @@ const Home = () => {
     
 
     if (productsData.error) {
-        return <p>ШОСЬ НЕ ТАК</p>
+        return <p>Не вдалося завантажити дані</p>
     }
 
 
@@ -25,7 +25,7 @@ const Home = () => {
         {productsData.loading && <Loader />}
         {categories.map(category => {
             //get last 7 items from each category
-           const items =  products.filter(item => item.category === category).slice(-7)
+           const items =  products.filter(item => item.category === category).slice(0,7)
               return items.length>0 && <CategorySection title={CategoriesDictionary[category]} items={items} key={category}/>
         })}
 

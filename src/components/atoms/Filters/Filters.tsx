@@ -30,7 +30,7 @@ const Filters:FC<FilerProps> = ({setIsOpen,filteredCategories,setFilteredCategor
                 e.stopPropagation()
                 setIsOpen(false)
             }}
-            className='text-4xl mb-12 text-green-500'>x</button>
+            className='text-4xl font-bold mb-12 text-teal-400'>x</button>
             <div className="w-full flex flex-wrap gap-5 justify-center">
                 { categories.map(item => (
                         <button key={item}

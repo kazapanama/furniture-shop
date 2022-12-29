@@ -24,7 +24,7 @@ const SearchAndFilters:FC<SearchAndFiltersProps> = ({setFilterText,filteredCateg
                 
                 <div className="flex justify-center gap-5 bg-teal-500 static  w-full p-2">
                     <button onClick={()=>setIsOpen(!isOpen)}>
-                        <img src="/icons/filter.svg" alt="search" className="w-6 h-6"/>
+                        <img src="/icons/filter.svg" alt="search" className="w-6 h-6 invert"/>
                     </button >
                     <input type="text" placeholder="Пошук" onChange={(e)=>setFilterText(e.target.value)}/>
                 </div>
