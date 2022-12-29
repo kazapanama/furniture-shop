@@ -37,6 +37,7 @@ const Checkout = () => {
             message += formatItem(item,productName)
         })
 
+        message +=`Сума замовлення загалом: ${cart.reduce((a,b)=>a+b.price,0)}грн`
         message = message.replace(/\n/g, '%0A')
         
         fetch(`https://api.telegram.org/bot${import.meta.env.VITE_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${import.meta.env.VITE_TELEGRAM_CHAT_ID}&text=${message}`)
@@ -62,7 +63,6 @@ const Checkout = () => {
                 <span>Всього до оплати: <strong>{cart.reduce((acc:number, item) => acc += item.quantity * item.price, 0)}</strong> грн</span>
                 
                     <ButtonRounded text='Оформити замовлення' onClick={()=>setShowForm(true)} color='bg-teal-400'/>
-                    {/* handleCheckout */}
                 </div>
 
             </section>

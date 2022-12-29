@@ -39,7 +39,7 @@ const  AllProductsCustomer = () => {
    }
 
    if (productsData.error) {
-            return <p>ШОСЬ НЕ ТАК</p>
+            return <p>Не вдалося завантажити список товарів</p>
    }
 
 
@@ -52,7 +52,7 @@ const  AllProductsCustomer = () => {
             {products && <SearchAndFilters setFilterText={setFilterText} filteredCategories={filteredCategories} setFilteredCategories={setFilteredCategories}/>}
             
             
-            {products.length === 0 && <p>Немає продуктів за даними критеріями</p>}
+            {products.length === 0 && !productsData.loading && <p>Немає продуктів за даними критеріями</p>}
             
             <div className="flex flex-wrap gap-5 justify-center mt-4">
                 {products.length>0 && products.map(item => (

@@ -1,23 +1,29 @@
 import { Link } from 'react-router-dom';
 import {FC, useState} from 'react';
 import CartIcon from '../../atoms/CartIcon/CartIcon';
+import SocialIcon from '../../atoms/SocialIcon/SocialIcon';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <nav className="w-full bg-teal-400 sticky top-0 z-30 flex justify-between p-2">
-      <Link to="/" className="flex items-center text-2xl font-bold text-white">
-        <img src="/ico/192.png" alt="logo" className='w-10 h-10 mr-2'/>
-        Ваші меблі
-      </Link>
-      
-      <div className='flex justify-center gap-5'>
-        <CartIcon />
-        <button onClick={()=>setIsOpen(true)}>
-          <img src="/icons/burger.svg" alt="burger" className='w-10 h-10'/>
-        </button>
-
+      <div className='wrapper flex justify-between w-full'> 
+      <div>
+          <Link to="/" className="flex items-center text-2xl font-bold text-white">
+            <img src="/ico/192.png" alt="logo" className='w-10 h-10 mr-2'/>
+            Ваші меблі
+          </Link>
       </div>
+        
+        <div className='flex justify-center gap-5'>
+          <CartIcon />
+          <button onClick={()=>setIsOpen(true)}>
+            <img src="/icons/burger.svg" alt="burger" className='w-10 h-10'/>
+          </button>
+
+        </div>
+      </div>
+     
       <OpenedMenu isOpen={isOpen} setIsOpen={setIsOpen}/>
     </nav>
   );
@@ -55,9 +61,13 @@ const OpenedMenu:FC<OpenedMenuProps> = ({isOpen,setIsOpen}) => {
     </div>
 
 
-    <div className='w-full flex flex-col items-end mr-8 md:items-center'>
+    <div className='w-full flex flex-col items-end mr-8 md:items-center md:mr-0'>
+      <div className='flex gap-2'>
+        <SocialIcon destination='facebook' size='medium'/>
+        <SocialIcon destination='instagram' size='medium'/>
+      </div>
       <span className='text-white text-2xl font-thin'>Контактний телефон</span>
-      <a href='tel:+380-99-360-6003' className='text-white text-3xl font-bold'>067 929 60 03</a>
+      <a href='tel:+380-98-380-0678' className='text-white text-3xl font-bold'>098 380 06 78</a>
     </div>
 
     <div className='opacity-0'>

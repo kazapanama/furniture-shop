@@ -38,25 +38,27 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <div className='wrapper'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/products" element={<AllProductsCustomer />} />
+          <Route path="/products/:id" element={<Details />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/delivery" element={<Delivery />} />
+          <Route path="/success" element={<SuccessOrder />} />
+          <Route path="/admin" element={<Login />} />
+          <Route element={<ProtectedRoutes />}> //private routes enabler
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/products" element={<AdminAllProducts />} />
+            <Route path="/admin/orders" element={<Orders />} />
+            <Route path="/admin/add" element={<AddProduct />} />
+            <Route path="/admin/product/:id" element={<EditProduct />} />
+          </Route>
+        <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
       
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/products" element={<AllProductsCustomer />} />
-        <Route path="/products/:id" element={<Details />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/delivery" element={<Delivery />} />
-        <Route path="/success" element={<SuccessOrder />} />
-        <Route path="/admin" element={<Login />} />
-        <Route element={<ProtectedRoutes />}> //private routes enabler
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/products" element={<AdminAllProducts />} />
-          <Route path="/admin/orders" element={<Orders />} />
-          <Route path="/admin/add" element={<AddProduct />} />
-          <Route path="/admin/product/:id" element={<EditProduct />} />
-        </Route>
-      <Route path="*" element={<NotFound />} />
-      </Routes>
       <ToastContainer autoClose={3000} />
       <Footer />
     </div>

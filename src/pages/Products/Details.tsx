@@ -188,14 +188,13 @@ const Details = () => {
 
         
         
-       {product.colors ? <div className="flex flex-col bg-slate-500 gap-3">
+       {product.colors ? <div className="flex flex-col  gap-3 p-2">
 
-            <span>Доступні кольори:</span> 
-            <div className="flex gap-3 pb-2">
-                {product.colors.map((option,index)=><div key={index} className={'w-12 h-12 border rounded-md'+ (activeColor===option.color ? ' w-16 h-16 border-green-500':'')} style={{backgroundColor:ColorsDictionary[option.color][1]}}
+            <span className="text-md">Доступні кольори:</span> 
+            <div className="flex gap-3 pb-2 bg-slate-300 p-2">
+                {product.colors.map((option,index)=><div key={index} className={'w-12 h-12 border rounded-md'+ (activeColor===option.color ? ' w-16 h-16 border-green-500 border-4':'')} style={{backgroundColor:ColorsDictionary[option.color][1]}}
                 onClick={()=>{
                     setActiveColor(option.color)
-                    console.log(option.color)
                 }}></div>)} 
             </div>
             </div>            

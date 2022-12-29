@@ -12,7 +12,7 @@ interface SizesSectionProps {
 
 const SizesSection:FC<SizesSectionProps> = ({width,height,length}) => {
     return ( 
-        <div className=" flex justify-around py-2">
+        <div className=" flex justify-around py-2 md:justify-start md:gap-5">
             {width ? <SizeDisplay parameter='Довжина' value={width} /> : null}
             {length ? <SizeDisplay parameter='Ширина' value={length}/> :null}
             {height ? <SizeDisplay parameter='Висота' value={height}/> : null}

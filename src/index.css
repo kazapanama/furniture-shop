@@ -9,13 +9,20 @@
 }
 
 .App{
-  max-width: min(100vw, 1250px);
+  /* max-width: min(100vw, 1250px); */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
 }
+
+.wrapper{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
 
 /* temporary for styling */
 
