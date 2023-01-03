@@ -4,9 +4,10 @@ import SearchAndFilters from "../../components/atoms/SearchAndFilters/SearchAndF
 import ProductCard from "../../components/molecules/ProductCard/ProductCard";
 import { useAppSelector } from "../../hooks/useStore";
 import { AllProducts } from "../../types/Products";
-
+import { setTitle } from "../../helpers/GeneralFunctions";
 
 const  AllProductsCustomer = () => {
+    setTitle('Всі товари')
     
     const [filterText,setFilterText] = useState<string>('')
     const [products,setProducts] = useState<AllProducts[]>([])

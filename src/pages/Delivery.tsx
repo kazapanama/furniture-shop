@@ -1,7 +1,8 @@
 
-
+import { setTitle } from '../helpers/GeneralFunctions';
 
 const Delivery = () => {
+    setTitle('Умови Доставки');
     return ( 
         <section>
             

@@ -2,9 +2,11 @@ import CategorySection from "../components/organisms/CategorySection/CategorySec
 import { useAppSelector } from "../hooks/useStore";
 import { CategoriesDictionary } from "../dictionaries/Categories";
 import Loader from "../components/atoms/Loader/Loader";
+import { setTitle } from '../helpers/GeneralFunctions';
 
 const Home = () => {
-    
+    setTitle('Головна')
+
     const categories = Object.keys(CategoriesDictionary)
     const productsData = useAppSelector(state => state.products)
 

@@ -137,7 +137,6 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
     setQueForDelete([...queForDelete, image])
     //removes image from the form
     const newURLs = imgURLs.filter((url) => url !== image);
-    //need to add deleting!!! from firebase
     setImgURLs(newURLs);
   }
 

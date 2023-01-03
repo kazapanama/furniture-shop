@@ -15,12 +15,14 @@ import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LinkRounded from "../../components/atoms/LinkRounded/LinkRounded";
 import AdditionalSizesDetails from "../../components/molecules/AdditionalSizesDetails/AdditionalSizesDetails";
+import { setTitle } from "../../helpers/GeneralFunctions";
 
 
 
 
 const Details = () => {
     const {id} = useParams();
+    setTitle(`Деталі товару ${id}`)
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const productsData = useAppSelector(state => state.products)

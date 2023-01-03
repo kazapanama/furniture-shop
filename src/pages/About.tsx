@@ -1,7 +1,11 @@
+import { setTitle } from '../helpers/GeneralFunctions';
+
 const About = () => {
+
+    setTitle('Про нас');
     return ( 
         <div>
-            <h1>About US</h1>
+            <h1>Про нас</h1>
         </div>
      );
 }

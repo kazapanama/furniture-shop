@@ -65,7 +65,7 @@ const AdditionalSizesSection:FC<AdditionalSizesSectionProps> = ({additionalSizes
             ))}
             </div>
             
-            <ButtonRounded text="Add additional size" color='bg-blue-400' onClick={(e)=>handleAddAdditionalSize(e)}/>
+            <ButtonRounded text="Додати новий розмір" color='bg-blue-400' onClick={(e)=>handleAddAdditionalSize(e)}/>
         </section> 
     
      );

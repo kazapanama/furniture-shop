@@ -8,11 +8,12 @@ import { formatItem } from "../helpers/TelergamMessages";
 import { useAppDispatch, useAppSelector } from "../hooks/useStore";
 import { resetToEmpty } from "../store/CartReducer";
 import { store } from "../store/store";
-
+import { setTitle } from '../helpers/GeneralFunctions';
 
 
 
 const Checkout = () => {
+    setTitle('Оформлення замовлення')
 
     const navigate = useNavigate()
     const dispatch = useAppDispatch()

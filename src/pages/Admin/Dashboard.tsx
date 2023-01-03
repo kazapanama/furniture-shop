@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import ButtonRounded from "../../components/atoms/ButtonRounded/ButtonRounded";
 import { useAppDispatch } from "../../hooks/useStore";
 import { logoutUser } from "../../store/UserReducer";
+import { setTitle } from "../../helpers/GeneralFunctions";
 
 const Dashboard = () => {
+
+    setTitle('Адмін панель');
     const dispatch = useAppDispatch()
     
     const logout = () => {
