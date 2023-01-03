@@ -6,7 +6,7 @@ import SocialIcon from '../../atoms/SocialIcon/SocialIcon';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="w-full bg-teal-400 sticky top-0 z-30 flex justify-between p-2">
+    <nav className="w-full bg-teal-400 sticky top-0 z-30 flex justify-center p-2 ">
       <div className='wrapper flex justify-between w-full'> 
       <div>
           <Link to="/" className="flex items-center text-2xl font-bold text-white">

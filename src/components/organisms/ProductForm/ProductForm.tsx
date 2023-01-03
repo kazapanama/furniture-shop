@@ -104,7 +104,8 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
       : dispatch(addOne(readyForUpload));
     //reset form and setup for new product
     
-    setProduct({...item,id:String(Date.now())});
+    const category = product.category;
+    setProduct({...item,id:String(Date.now()),category});
     //notification for user about success
     const message = toEdit ? 'Товар відредаговано' : 'Товар додано';
     toast.success(message)
