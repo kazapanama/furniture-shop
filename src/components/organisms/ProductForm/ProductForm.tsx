@@ -11,6 +11,7 @@ import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ButtonRounded from '../../atoms/ButtonRounded/ButtonRounded';
 import AdditionalSizesSection from '../../molecules/AdditionalSizesSection/AdditionalSizesSection';
+import { CategoriesDictionary } from '../../../dictionaries/Categories';
 
 
 interface ProductFormProps {
@@ -179,11 +180,15 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
               }
               defaultValue={product.category}
             >
-              <option value="sofa">Дивани</option>
+
+              {Object.entries(CategoriesDictionary).map(category=>(
+                 <option key={category[0]} value={category[0]}>{category[1]}</option>
+              ))}
+              {/* <option value="sofa">Дивани</option>
               <option value="chair">Крісла</option>
               <option value="closet">Шафи</option>
               <option value="bed">Ліжка</option>
-              <option value="bedding">Матраси</option>
+              <option value="bedding">Матраси</option> */}
             </select>
           </div>
         </div>

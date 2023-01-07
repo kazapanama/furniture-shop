@@ -9,4 +9,7 @@ export const CategoriesDictionary:CategoriesDictionary = {
     closet: 'Шафи',
     bed: 'Ліжка',
     bedding: 'Матраси',
+    wardrobe: 'Шафи-купе',
+    dresser: 'Комоди',
+    kitchen: 'Кухні'
 }

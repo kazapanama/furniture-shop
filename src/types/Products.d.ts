@@ -54,7 +54,19 @@ interface Bedding extends Product {
     additionalSizes?: AdditionalSize[];
 }
 
-export type AllProducts = Sofa | Chair | Bed | Closet | Bedding;
+interface Wardrobe extends Product {
+    category: "wardrobe";
+}
+
+interface Dresser extends Product {
+    category: "dresser";
+}
+
+interface Kitchen extends Product {
+    category: "kitchen";
+}
+
+export type AllProducts = Sofa | Chair | Bed | Closet | Bedding | Wardrobe | Dresser | Kitchen;
 
 export type ICategories = Extract<
   AllProducts["category"],

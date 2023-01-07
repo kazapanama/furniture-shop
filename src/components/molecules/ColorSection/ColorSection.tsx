@@ -54,7 +54,6 @@ const ColorSection:FC<ColorSectionProps> = ({colorOptions,setColorOptions}) => {
 
                             {Object.keys(ColorsDictionary).map((color) => (
                                 <option value={color} key={color}
-                                style={{backgroundColor: ColorsDictionary[color][1]}}
                                 >
                                 {ColorsDictionary[color][0]}
                                 </option>
