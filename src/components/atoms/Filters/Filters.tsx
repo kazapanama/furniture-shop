@@ -13,7 +13,7 @@ interface FilerProps {
 const Filters:FC<FilerProps> = ({setIsOpen,filteredCategories,setFilteredCategories}) => {
 
     const categories = Object.keys(CategoriesDictionary);
-
+    console.log(filteredCategories)
 
     const handleCategoryClick = (category: string) => {
 
@@ -34,7 +34,7 @@ const Filters:FC<FilerProps> = ({setIsOpen,filteredCategories,setFilteredCategor
             <div className="w-full flex flex-wrap gap-5 justify-center">
                 { categories.map(item => (
                         <button key={item}
-                        className={filteredCategories.includes(item) ? 'p-2 border rounded-full border-slate-500':'p-2 border rounded-full text-white font-bold border-slate-500 bg-teal-400'}
+                        className={filteredCategories.includes(item) ? 'p-2 border rounded-full text-white font-bold border-slate-500 bg-teal-400':'p-2 border rounded-full border-slate-500'}
                         onClick={()=>handleCategoryClick(item)}
                         >
                             {CategoriesDictionary[item]}</button>

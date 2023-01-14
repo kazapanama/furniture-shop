@@ -11,6 +11,7 @@ interface Product {
     length?: number;
     manufacturer?: string;
     colors?: ColorVariant[];
+    origin?:'Дубок'|'Volko'|'Інше';
 }
 
 export interface ColorVariant {

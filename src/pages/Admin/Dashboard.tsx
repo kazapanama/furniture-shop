@@ -3,6 +3,7 @@ import ButtonRounded from "../../components/atoms/ButtonRounded/ButtonRounded";
 import { useAppDispatch } from "../../hooks/useStore";
 import { logoutUser } from "../../store/UserReducer";
 import { setTitle } from "../../helpers/GeneralFunctions";
+import DashboardItem from "../../components/atoms/DashboardItem/DashboardItem";
 
 const Dashboard = () => {
 
@@ -17,9 +18,9 @@ const Dashboard = () => {
     
     <section className="flex flex-col gap-12 w-full justify-center">
         <div className="flex flex-col gap-5 items-center">
-            <Link to='/admin/add' className="font-bold text-2xl">Додати новий товар</Link>
-            <Link to='/admin/products' className="font-bold text-2xl">Список всіх товарів</Link>
-            <Link to='/admin/orders' className="font-bold text-2xl">Замовлення</Link>
+            <DashboardItem title='Додати товар' to='/admin/add' icon='plus'/>
+            <DashboardItem title='Список товарів' to='/admin/products' icon='list'/>
+            <DashboardItem title='Замовлення' to='/admin/orders' icon='cartDone'/>
             <ButtonRounded text='logout' onClick={logout} color='bg-red-400'/>
         </div>
         

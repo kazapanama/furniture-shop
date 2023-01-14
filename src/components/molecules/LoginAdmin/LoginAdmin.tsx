@@ -45,7 +45,7 @@ const LoginAdmin = () => {
                     error ? setError(false) : null
                     }}/>
                 </div>
-                <ButtonRounded text='LOGIN' color='bg-teal-400'/>
+                <ButtonRounded text='Увійти' color='bg-teal-400'/>
             </form>
             {error && <span className='text-red-800'>Невірний логін або пароль</span>}
         </section>

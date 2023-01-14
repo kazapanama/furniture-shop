@@ -31,6 +31,7 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
     height: 0,
     length: 0,
     manufacturer: '',
+    origin:'Дубок',
   };
 
   const [product, setProduct] = useState(toEdit || item);
@@ -184,13 +185,27 @@ const ProductForm: FC<ProductFormProps> = ({ toEdit }) => {
               {Object.entries(CategoriesDictionary).map(category=>(
                  <option key={category[0]} value={category[0]}>{category[1]}</option>
               ))}
-              {/* <option value="sofa">Дивани</option>
-              <option value="chair">Крісла</option>
-              <option value="closet">Шафи</option>
-              <option value="bed">Ліжка</option>
-              <option value="bedding">Матраси</option> */}
             </select>
           </div>
+
+          <div className="flex flex-col ">
+            <label>Категорія</label>
+            <select
+              onChange={(e) =>
+                setProduct({ ...product, origin: e.target.value as AllProducts['origin'] })
+              }
+              defaultValue={product.origin}
+            >
+
+                 <option value='Дубок'>Дубок</option>
+                 <option value='Volko'>Volko</option>
+                 <option value='Інше'>Інше</option>
+             
+            </select>
+          </div>
+
+
+
         </div>
 
         <div className="flex flex-col mb-3">

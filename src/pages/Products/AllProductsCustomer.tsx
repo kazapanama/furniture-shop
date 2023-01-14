@@ -26,7 +26,7 @@ const  AllProductsCustomer = () => {
 
     useEffect(() => {
 
-        const filteredByCategory = displayedProducts.filter(item => !filteredCategories.includes(item.category))
+        const filteredByCategory = filteredCategories.length > 0 ? displayedProducts.filter(item => filteredCategories.includes(item.category)) : displayedProducts
 
 
         const filteredByName = filteredByCategory.filter(item => item.name.toLowerCase().includes(filterText.toLowerCase()))
